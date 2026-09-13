@@ -30,13 +30,6 @@ export async function patchAppt(obj,obj_id) {
         body: JSON.stringify(obj)
     })
     
-    if(!response.ok) throw new Error("Oops! failed to edit appointment")
+    if(!response.ok) throw new Error("Oops! there is an error")
     return response.json();
-}
-
-export async function deleteAppt(obj_id) {
-    const response = await fetch(`${appts_url}/${obj_id}`, {
-        method: "DELETE"
-    })
-    if(!response.ok) throw new Error("Oops! failed to cancel appointment")
 }
