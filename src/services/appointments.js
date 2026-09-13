@@ -4,7 +4,7 @@ export async function getAppt(Signal) {
     const response = await fetch(appts_url, {
         signal: Signal
     })
-    if(!response.ok) throw new Error("Oops! failed to fetch")
+    if(!response.ok) throw new Error("Oops! failed to load appointments")
     return response.json();
 }
 
