@@ -1,0 +1,80 @@
+{
+    "patients": [
+        {
+            "id": "p1",
+            "name": "Aisha Mwakalinga",
+            "age": 34,
+            "gender": "Female",
+            "phone": "0712-345-678",
+            "address": "Mikocheni, Dar es Salaam"
+        },
+        {
+            "id": "p2",
+            "name": "John Kessy",
+            "age": 45,
+            "gender": "Male",
+            "phone": "0754-987-321",
+            "address": "Kinondoni, Dar es Salaam"
+        },
+        {
+          "id": "p3",
+          "name": "Grace Mushi",
+          "age": 28,
+          "gender": "Female",
+          "phone": "0623-112-233",
+          "address": "Sinza, Dar es Salaam"
+        }
+    ],
+    "doctors": [
+        {
+            "id": "d1",
+            "name": "Dr.Emmanuel Shirima",
+            "specialty": "General Practice",
+            "phone": "0713-555-101",
+            "email": "e.shirima@clinic.co.tz"
+        },
+        {
+            "id": "d2",
+            "name": "Dr. Fatma Juma",
+            "specialty": "Cardiology",
+            "phone": "0765-555-202",
+            "email": "f.juma@clinic.co.tz"
+        },
+        {
+            "id": "d3",
+            "name": "Dr. Peter Massawe",
+            "specialty": "Pediatrics",
+            "phone": "0688-555-303",
+            "email": "p.massawe@clinic.co.tz"
+        }
+    ],
+    "appointments": [
+        {
+            "id": "a1",
+            "patientId": "p1",
+            "doctorId": "d1",
+            "date": "2026-09-15",
+            "time": "10:30",
+            "reason": "General consultation",
+            "status": "scheduled"
+        },
+        {
+            "id": "a2",
+            "patientId": "p2",
+            "doctorId": "d2",
+            "date": "2026-09-16",
+            "time": "14:00",
+            "reason": "Follow-up on heart palpitations",
+            "status": "scheduled"
+        },
+        {
+            "id": "a3",
+            "patientId": "p3",
+            "doctorId": "d3",
+            "date": "2026-09-17",
+            "time": "09:15",
+            "reason": "Child vaccination checkup",
+            "status": "confirmed"
+        }
+    ]
+}
