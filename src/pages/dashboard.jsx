@@ -1,5 +1,7 @@
 import {useState} from 'react'
 import useAppointments from '../hooks/useAppointments' 
+import useDoctors from '../hooks/useDoctors'
+import usePatients from '../hooks/usePatients'
 import '../styles/dashboard.css'
 import Select from '../components/ui/select'
 import Button from '../components/ui/button'
@@ -16,6 +18,9 @@ function Dashboard()  {
           editAppointment,
           removeAppointment
         } = useAppointments()
+   
+    const {doctors}  = useDoctors();
+    const {patients} = usePatients();
 
     const [name, setName] = useState("")
     const [selectSearch, setSelectSearch] = useState("")
@@ -107,7 +112,11 @@ function Dashboard()  {
                         <td>Status</td>
                         <td>Delete</td>
                     </th>
-                    
+                    {appointments.map(appt => (
+                        <tr>
+                            <td><i className="fa-regular fa-pen-to-square"></i></td>
+                        </tr>
+                    ))}
                 </Table>
             </div>
         </section>
