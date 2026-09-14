@@ -8,7 +8,7 @@ export async function getPatients(Signal) {
     return response.json();
 }
 
-export async function postPatients(obj) {
+export async function postPatient(obj) {
     const response = await fetch(patients_url, {
         method: "POST",
         headers: {
@@ -20,7 +20,7 @@ export async function postPatients(obj) {
     return response.json();
 }
 
-export async function deletePatients(obj_id) {
+export async function deletePatient(obj_id) {
     const response = await fetch(`${patients_url}/${obj_id}`, {
         method: 'DELETE'
     })
