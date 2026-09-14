@@ -5,6 +5,7 @@ import Select from '../components/ui/select'
 import Button from '../components/ui/button'
 import Input from '../components/ui/input'
 import DashboardCard from '../components/dashboard_card'
+import Table from '../components/table'
 
 function Dashboard()  {
     const {appointments,
@@ -95,7 +96,19 @@ function Dashboard()  {
             </div>
 
             <div className="dashboard-body">
-
+                <Table className="appointments-table">
+                    <th>
+                        <td>Edit</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Doctor</td>
+                        <td>Patient</td>
+                        <td>Reason</td>
+                        <td>Status</td>
+                        <td>Delete</td>
+                    </th>
+                    
+                </Table>
             </div>
         </section>
     )
