@@ -2,6 +2,7 @@ import {useEffect, useReducer} from 'react';
 import { getAppt,
          postAppt,
          patchAppt,
+         deleteAppt
         } from '../services/appointments'
 const initialAppointments = {
         loading: true,
@@ -30,8 +31,15 @@ function reducer(state, action) {
         case 'CANCEL': return {...state, 
                                appointments: state.appointments.map(appt => appt.id === action.payload.id
                                                                             ? {...appt, status: action.payload.status}
-                                                                            : appt)}                                                                            : appt)}
-}
+                                                                            : appt)};
+
+        case 'REMOVE': return {...state,
+                                appointments: state.appointments.filter(appt => appt.id !== action.payload)}
+
+        default: return state;
+        }
+
+    }
 
 
 function useAppointments() {
@@ -104,13 +112,28 @@ function useAppointments() {
         }
     }
 
+    async function removeAppointment(obj_id) {
+        try {
+            await deleteAppt(obj_id)
+            dispatch({
+                type: 'REMOVE',
+                payload: obj_id
+            })
+            return {success: true}
+        }
+        catch(err) {
+            return {success: false, error: err.message}
+        }
+    }
+
     return {
         appointments: appts.appointments,
-        loading: appts.loading,
-        error: appts.error,
+        loadingAppts: appts.loading,
+        errorAppts: appts.error,
         addAppointment,
         cancelAppointment,
-        editAppointment
+        editAppointment,
+        removeAppointment
     }
 }
 export default useAppointments
