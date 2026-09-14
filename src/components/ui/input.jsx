@@ -1,0 +1,21 @@
+import '../../styles/input.css'
+
+function Input({
+    type,
+    value,
+    className,
+    placeholder,
+    maxLength,
+    autoComplete,
+    onChange
+}) {
+    return <input
+            type={type}
+            value={value}
+            className={className}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            autoComplete={autoComplete}
+            onChange={onChange} />
+}
+export default Input;
