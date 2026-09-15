@@ -8,6 +8,7 @@ import Button from '../components/ui/button'
 import Input from '../components/ui/input'
 import DashboardCard from '../components/dashboard_card'
 import Table from '../components/table'
+import Form from '../components/form'
 
 function Dashboard()  {
     const {appointments,
@@ -99,41 +100,64 @@ function Dashboard()  {
                     </div>
                 </div>
             </div>
-{/* 
+
             <div className="dashboard-body">
                 <Table className="appointments-table">
-                    <th>
-                        <td>Edit</td>
-                        <td>Date</td>
-                        <td>Time</td>
-                        <td>Doctor</td>
-                        <td>Patient</td>
-                        <td>Reason</td>
-                        <td>Status</td>
-                        <td>Delete</td>
-                    </th>
+                    <tr>
+                        <th>Edit</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Doctor</th>
+                        <th>Patient</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+                    </tr>
                     {appointments.map(appt => (
                         <tr>
                             <td>
                                 <Button className="table-data-button">
                                     <i className="fa-regular fa-pen-to-square"></i>
                                 </Button>
-                            </td>
+                           </td>
                             <td>
-                                {appt.date.replace("-","/")}
+                                {appt.date.replaceAll("-","/")}
                             </td>
                             <td>
                                 {appt.time}
                             </td>
                             <td>
-                                {doctors.filter(doc => doc.id === appt.doctorId
+                                {doctors.map(doc => doc.id === appt.doctorId
                                                 && doc.name
                                 )}
+                            </td>
+                            <td>
+                                {patients.map(pat => pat.id === appt.patientId 
+                                                && pat.name
+                                )}
+                            </td>
+                            <td>
+                                {appt.reason}
+                            </td>
+                            <td>
+                                {appt.status}
+                            </td>
+                            <td>
+                                <Button class="table-data-button delete">
+                                    <i className="fa-solid fa-trash-can"></i>
+                                </Button>
                             </td>
                         </tr>
                     ))}
                 </Table>
-            </div> */}
+            </div>
+            <div className="edit-form">
+                <Button className="close-form">
+                    <i className="fa-solid fa-xmark"></i>
+                </Button>
+                <div className="form-title">Edit Appointment</div>
+                
+            </div>
         </section>
     )
 }
