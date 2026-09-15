@@ -56,7 +56,7 @@
             "date": "2026-09-15",
             "time": "10:30",
             "reason": "General consultation",
-            "status": "scheduled"
+            "status": "Scheduled"
         },
         {
             "id": "a2",
@@ -65,7 +65,7 @@
             "date": "2026-09-16",
             "time": "14:00",
             "reason": "Follow-up on heart palpitations",
-            "status": "scheduled"
+            "status": "Cancelled"
         },
         {
             "id": "a3",
@@ -74,7 +74,7 @@
             "date": "2026-09-17",
             "time": "09:15",
             "reason": "Child vaccination checkup",
-            "status": "confirmed"
+            "status": "Confirmed"
         }
     ]
 }
