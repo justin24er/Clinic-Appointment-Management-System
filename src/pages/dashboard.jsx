@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect,useContext} from 'react'
 import useAppointments from '../hooks/useAppointments' 
 import useDoctors from '../hooks/useDoctors'
 import usePatients from '../hooks/usePatients'
@@ -9,6 +9,7 @@ import Input from '../components/ui/input'
 import DashboardCard from '../components/dashboard_card'
 import Table from '../components/table'
 import Form from '../components/form'
+import { notification } from '../contexts/notifyContext'
 
 function Dashboard()  {
     const {appointments,
@@ -17,7 +18,8 @@ function Dashboard()  {
           addAppointment,
           cancelAppointment,
           editAppointment,
-          removeAppointment
+          removeAppointment,
+          restoreAppointment
         } = useAppointments()
    
     const {doctors}  = useDoctors();
@@ -32,9 +34,43 @@ function Dashboard()  {
     const [reason, setReason] = useState("")
     const [dr, setDr] = useState("")
 
+    const {setSUCCESS,
+            SUCCESS,
+            setERROR,
+            ERROR, 
+            setMessage} = useContext(notification)
+
+    useEffect(() => {
+        const clear = setTimeout(() => {
+            setSUCCESS(false)
+            setERROR(false)
+        },2000)
+
+        return () => clearTimeout(clear)
+    },[SUCCESS,ERROR,setSUCCESS,setERROR])
+
     async function handleCancel(obj,id) {
-        const result = await addAppointment(obj,id)
-        
+        const result = await cancelAppointment(obj,id)
+        if(result.success) {
+            setSUCCESS(result.success)
+            setMessage(result.mssg)
+        }
+        if(!result.success) {
+            setERROR(!result.success)
+            setMessage(result.mssg)
+        }
+    }
+
+    async function handleRestore(obj,id) {
+        const result = await restoreAppointment(obj,id)
+        if(result.success) {
+            setSUCCESS(result.success)
+            setMessage(result.mssg)
+        }
+        if(!result.success) {
+            setSUCCESS(!result.success) 
+            setMessage(result.mssg)
+        }
     }
 
     return (
@@ -48,25 +84,25 @@ function Dashboard()  {
                     <DashboardCard className="card b">
                         <p className="card-title">Scheduled</p>
                         <p className="card-value">{appointments
-                                                .filter(appt => appt.status === "scheduled")
+                                                .filter(appt => appt.status === "Scheduled")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card c">
                         <p className="card-title">Confirmed</p>
                         <p className="card-value">{appointments
-                                                .filter(appt => appt.status === "confirmed")
+                                                .filter(appt => appt.status === "Confirmed")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card d">
                         <p className="card-title">Completed</p>
                         <p className="card-value">{appointments
-                                                .filter(appt => appt.status === "completed")
+                                                .filter(appt => appt.status === "Completed")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card e">
                         <p className="card-title">Cancelled</p>
                         <p className="card-value">{appointments
-                                                .filter(appt => appt.status === "cancelled")
+                                                .filter(appt => appt.status === "Cancelled")
                                                 .length || 0}</p>
                     </DashboardCard>
                 </div>
@@ -156,8 +192,11 @@ function Dashboard()  {
                                     {appt.status}
                                 </td>
                                 <td>
-                                    <Button onClick={() => handleCancel({status: "Cancelled"},appt.id)} className="table-data-button cancel">
-                                        {appt.status === "Cancelled" ? "cancelled" : "cancel"}
+                                    <Button onClick={appt.status !== "Cancelled" 
+                                                        ? () => handleCancel({status: "Cancelled"},appt.id)
+                                                        : () => handleRestore({status: "Scheduled"}, appt.id)} 
+                                        className="table-data-button cancel">
+                                        {appt.status === "Cancelled" ? "restore" : "cancel"}
                                     </Button>
                                 </td>
                                 {appt.status === "Cancelled" && <td>
