@@ -31,30 +31,30 @@ function Dashboard()  {
             <div className="dashboard-header">
                 <div className="dash-cards">
                     <DashboardCard className="card a">
-                        <p class="card-title">Total Appointments</p>
-                        <p class="card-value">{appointments.length || 0}</p>
+                        <p className="card-title">Total Appointments</p>
+                        <p className="card-value">{appointments.length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card b">
-                        <p class="card-title">Scheduled</p>
-                        <p class="card-value">{appointments
+                        <p className="card-title">Scheduled</p>
+                        <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "scheduled")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card c">
-                        <p class="card-title">Confirmed</p>
-                        <p class="card-value">{appointments
+                        <p className="card-title">Confirmed</p>
+                        <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "confirmed")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card d">
-                        <p class="card-title">Completed</p>
-                        <p class="card-value">{appointments
+                        <p className="card-title">Completed</p>
+                        <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "completed")
                                                 .length || 0}</p>
                     </DashboardCard>
                     <DashboardCard className="card e">
-                        <p class="card-title">Cancelled</p>
-                        <p class="card-value">{appointments
+                        <p className="card-title">Cancelled</p>
+                        <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "cancelled")
                                                 .length || 0}</p>
                     </DashboardCard>
@@ -80,12 +80,12 @@ function Dashboard()  {
                             className="search-select"
                             value={selectSearch}
                             onChange={(e) => setSelectSearch(e.target.value)}>
-                            <Button className="select-btn"><i class="fa-solid fa-chevron-down"></i></Button>
+                            <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
                             <option value="Patient name">Patient name</option>
                             <option value="Doctor name">Doctor name</option>
                         </Select>
                         <label htmlFor="search">
-                            <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <span><i className="fa-solid fa-magnifying-glass"></i></span>
                             <Input
                                 className="search-input"
                                 type="text"
@@ -99,7 +99,7 @@ function Dashboard()  {
                     </div>
                 </div>
             </div>
-
+{/* 
             <div className="dashboard-body">
                 <Table className="appointments-table">
                     <th>
@@ -114,11 +114,26 @@ function Dashboard()  {
                     </th>
                     {appointments.map(appt => (
                         <tr>
-                            <td><i className="fa-regular fa-pen-to-square"></i></td>
+                            <td>
+                                <Button className="table-data-button">
+                                    <i className="fa-regular fa-pen-to-square"></i>
+                                </Button>
+                            </td>
+                            <td>
+                                {appt.date.replace("-","/")}
+                            </td>
+                            <td>
+                                {appt.time}
+                            </td>
+                            <td>
+                                {doctors.filter(doc => doc.id === appt.doctorId
+                                                && doc.name
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </Table>
-            </div>
+            </div> */}
         </section>
     )
 }
