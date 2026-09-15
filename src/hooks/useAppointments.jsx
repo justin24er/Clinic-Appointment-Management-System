@@ -30,7 +30,7 @@ function reducer(state, action) {
                                                                                     reason: action.payload.reason,
                                                                                     doctorId: action.payload.doctorId}
                                                                                  : appt) }
-        case 'CANCEL': return {...state, 
+        case 'TOGGLE': return {...state, 
                                appointments: state.appointments.map(appt => appt.id === action.payload.id
                                                                             ? {...appt, status: action.payload.status}
                                                                             : appt)}
@@ -79,10 +79,10 @@ function useAppointments() {
                 type: 'ADD',
                 payload: feedback
             })
-            return {success: true}
+            return {success: true, mssg: "added successfully!"}
         }
         catch(err) {
-            return {success: false, error: err.message}
+            return {success: false, mssg: err.message}
         }
     }
 
@@ -90,13 +90,27 @@ function useAppointments() {
         try{
             const feedback = await patchAppt(obj,obj_id) 
             dispatch({
-                type: 'CANCEL',
+                type: 'TOGGLE',
                 payload: feedback
             })
-            return {success: true}
+            return {success: true, mssg: "cancelled successfully!"}
         }
         catch(err) {
-            return {success: false, error: err.message}
+            return {success: false, mssg: err.message}
+        }
+    }
+
+    async function restoreAppointment(obj, obj_id){
+        try{
+            const feedback = await patchAppt(obj, obj_id)
+            dispatch({
+                type: 'TOGGLE',
+                payload: feedback
+            })
+            return {success: true, mssg: "restored successfully!"}
+        }
+        catch(err) {
+            return {success: false, mssg: err.message}
         }
     }
 
@@ -107,10 +121,10 @@ function useAppointments() {
                 type: 'EDIT',
                 payload: feedback
             })
-            return {success: true}
+            return {success: true, mssg: "edited successfully!"}
         }
         catch(err) {
-            return {success: false, error: err.message}
+            return {success: false, mssg: err.message}
         }
     }
 
@@ -121,10 +135,10 @@ function useAppointments() {
                 type: 'REMOVE',
                 payload: obj_id
             })
-            return {success: true}
+            return {success: true, mssg: "removed successfully!"}
         }
         catch(err) {
-            return {success: false, error: err.message}
+            return {success: false, mssg: err.message}
         }
     }
 
@@ -135,7 +149,8 @@ function useAppointments() {
         addAppointment,
         cancelAppointment,
         editAppointment,
-        removeAppointment
+        removeAppointment,
+        restoreAppointment
     }
 }
 export default useAppointments

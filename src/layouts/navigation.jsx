@@ -4,15 +4,13 @@ import { notification } from '../contexts/notifyContext';
 import { useContext } from 'react';
 
 function Navigation({children})  {
-    const {SUCCESS, Message} = useContext(notification);
+    const {SUCCESS, ERROR, message} = useContext(notification);
 
     return (
         <div className="main-container">
             <div className="page-notification">
-                {SUCCESS 
-                        ? <span className="notification-success">{Message}</span>
-                        : <span className="notification-error">{Message}</span>
-                }
+                {SUCCESS && <span className="notification-success">{message}</span> }
+                {ERROR && <span className="notification-error">{message}</span>}
             </div>
             <h2 className="primary-heading">Clinic Appointment Management System</h2>
             <main>
