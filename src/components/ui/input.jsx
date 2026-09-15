@@ -4,6 +4,7 @@ function Input({
     type,
     value,
     className,
+    id,
     placeholder,
     maxLength,
     autoComplete,
@@ -13,6 +14,7 @@ function Input({
             type={type}
             value={value}
             className={className}
+            id={id}
             placeholder={placeholder}
             maxLength={maxLength}
             autoComplete={autoComplete}
