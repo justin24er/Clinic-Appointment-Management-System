@@ -107,54 +107,57 @@ function Dashboard()  {
             </div>
 
             <div className="dashboard-body">
-                <Table className="appointments-table">
-                    <tr>
-                        <th>Edit</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Doctor</th>
-                        <th>Patient</th>
-                        <th>Reason</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                    </tr>
-                    {appointments.map(appt => (
+                {loadingAppts && <div class="loading">loading...</div>}
+                {errorAppts ? <div class="loading-error">{errorAppts}</div> :
+                    <Table className="appointments-table">
                         <tr>
-                            <td>
-                                <Button className="table-data-button">
-                                    <i className="fa-regular fa-pen-to-square"></i>
-                                </Button>
-                           </td>
-                            <td>
-                                {appt.date.replaceAll("-","/")}
-                            </td>
-                            <td>
-                                {appt.time}
-                            </td>
-                            <td>
-                                {doctors.map(doc => doc.id === appt.doctorId
-                                                && doc.name
-                                )}
-                            </td>
-                            <td>
-                                {patients.map(pat => pat.id === appt.patientId 
-                                                && pat.name
-                                )}
-                            </td>
-                            <td>
-                                {appt.reason}
-                            </td>
-                            <td>
-                                {appt.status}
-                            </td>
-                            <td>
-                                <Button class="table-data-button delete">
-                                    <i className="fa-solid fa-trash-can"></i>
-                                </Button>
-                            </td>
+                            <th>Edit</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Doctor</th>
+                            <th>Patient</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Delete</th>
                         </tr>
-                    ))}
-                </Table>
+                        {appointments.map(appt => (
+                            <tr>
+                                <td>
+                                    <Button className="table-data-button">
+                                        <i className="fa-regular fa-pen-to-square"></i>
+                                    </Button>
+                               </td>
+                                <td>
+                                    {appt.date.replaceAll("-","/")}
+                                </td>
+                                <td>
+                                    {appt.time}
+                                </td>
+                                <td>
+                                    {doctors.map(doc => doc.id === appt.doctorId
+                                                    && doc.name
+                                    ) || "loading..."}
+                                </td>
+                                <td>
+                                    {patients.map(pat => pat.id === appt.patientId 
+                                                    && pat.name
+                                    ) || "loading..."}
+                                </td>
+                                <td>
+                                    {appt.reason}
+                                </td>
+                                <td>
+                                    {appt.status}
+                                </td>
+                                <td>
+                                    <Button class="table-data-button delete">
+                                        <i className="fa-solid fa-trash-can"></i>
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </Table>
+                    }
             </div>
             <div className="edit-form-wrapper">
                 <Button className="close-form">
@@ -200,9 +203,12 @@ function Dashboard()  {
                             value={dr}
                             onChange={e => setDr(e.target.value)}>
                                 <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
-
+                                {doctors.map(doc => (
+                                    <option value={doc.name}>{doc.name}</option>
+                                ))}
                             </Select>
                     </div>
+                    <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
                 </Form>
             </div>
         </section>
