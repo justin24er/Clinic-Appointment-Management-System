@@ -1,9 +1,19 @@
 import {Link} from 'react-router-dom';
 import '../styles/navigation.css';
+import { notification } from '../contexts/notifyContext';
+import { useContext } from 'react';
 
 function Navigation({children})  {
+    const {SUCCESS, Message} = useContext(notification);
+
     return (
         <div className="main-container">
+            <div className="page-notification">
+                {SUCCESS 
+                        ? <span className="notification-success">{Message}</span>
+                        : <span className="notification-error">{Message}</span>
+                }
+            </div>
             <h2 className="primary-heading">Clinic Appointment Management System</h2>
             <main>
                 <nav className="main-navigation">

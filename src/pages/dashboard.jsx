@@ -32,6 +32,11 @@ function Dashboard()  {
     const [reason, setReason] = useState("")
     const [dr, setDr] = useState("")
 
+    async function handleCancel(obj,id) {
+        const result = await addAppointment(obj,id)
+        
+    }
+
     return (
         <section className="dashboard-container">
             <div className="dashboard-header">
@@ -118,6 +123,7 @@ function Dashboard()  {
                             <th>Patient</th>
                             <th>Reason</th>
                             <th>Status</th>
+                            <th>Cancel</th>
                             <th>Delete</th>
                         </tr>
                         {appointments.map(appt => (
@@ -150,10 +156,15 @@ function Dashboard()  {
                                     {appt.status}
                                 </td>
                                 <td>
+                                    <Button onClick={() => handleCancel({status: "Cancelled"},appt.id)} className="table-data-button cancel">
+                                        {appt.status === "Cancelled" ? "cancelled" : "cancel"}
+                                    </Button>
+                                </td>
+                                {appt.status === "Cancelled" && <td>
                                     <Button class="table-data-button delete">
                                         <i className="fa-solid fa-trash-can"></i>
                                     </Button>
-                                </td>
+                                </td>}
                             </tr>
                         ))}
                     </Table>
