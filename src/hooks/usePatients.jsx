@@ -13,21 +13,20 @@ function reducer(state, action) {
     switch(action.type) {
         case 'FETCH_SUCCESS': return {...state, 
                                       loading: false,
-                                      patients: [...state.patients, action.payload]
-                                    };
+                                      patients: action.payload}
 
         case 'FETCH_ERROR': return {...state,
                                     error: action.payload,
                                     loading: false
-                                };
+                                }
 
         case 'ADD': return {...state,
                             patients: [...state.patients, action.payload]
-                            };
+                            }
 
         case 'REMOVE': return {...state,
                                patients: state.patients.filter(patient => patient.id !== action.payload)
-                            };
+                            }
         default: return state
     }
 }
@@ -42,7 +41,7 @@ function usePatients() {
             try {
                 const feedback = await getPatients(controller.signal)
                 dispatch({
-                    type: 'FETCH_SUCCES',
+                    type: 'FETCH_SUCCESS',
                     payload: feedback
                 })
             }

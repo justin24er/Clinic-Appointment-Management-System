@@ -14,12 +14,14 @@ function reducer(state, action) {
     switch(action.type) {
         case 'FETCH_SUCCESS':  return {...state, 
                                         loading: false, 
-                                        appointments: [...state.appointments, action.payload]};
+                                        appointments: action.payload}
+
         case 'FETCH_ERROR': return {...state, 
                                         loading: false,
-                                        error: action.payload};
+                                        error: action.payload}
+
         case 'ADD': return {...state,
-                            appointments: [...state.appointments, action.payload]};
+                            appointments: [...state.appointments, action.payload]}
         case 'EDIT':    return     {...state, 
                                     appointments: state.appointments.map(appt => appt.id === action.payload.id
                                                                                  ? {...appt, 
@@ -27,11 +29,11 @@ function reducer(state, action) {
                                                                                     time: action.payload.time,
                                                                                     reason: action.payload.reason,
                                                                                     doctorId: action.payload.doctorId}
-                                                                                 : appt) };
+                                                                                 : appt) }
         case 'CANCEL': return {...state, 
                                appointments: state.appointments.map(appt => appt.id === action.payload.id
                                                                             ? {...appt, status: action.payload.status}
-                                                                            : appt)};
+                                                                            : appt)}
 
         case 'REMOVE': return {...state,
                                 appointments: state.appointments.filter(appt => appt.id !== action.payload)}
@@ -50,7 +52,7 @@ function useAppointments() {
 
         async function loadAppointments() {
             try {
-                const feedback = getAppt(controller.signal)
+                const feedback = await getAppt(controller.signal)
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: feedback

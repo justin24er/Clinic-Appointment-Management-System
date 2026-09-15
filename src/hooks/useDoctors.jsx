@@ -14,7 +14,7 @@ function reducer(state, action) {
     switch(action.type) {
         case 'FETCH_SUCCESS': return {...state, 
                                       loading: false,
-                                      doctors: [...state.doctors, action.payload]}
+                                      doctors: action.payload}
 
         case 'FETCH_ERROR': return {...state,
                                     loading: false,
