@@ -23,9 +23,14 @@ function Dashboard()  {
     const {doctors}  = useDoctors();
     const {patients} = usePatients();
 
-    const [name, setName] = useState("")
+    const [searchName, setSearchName] = useState("")
     const [selectSearch, setSelectSearch] = useState("")
     const [selectFilter, setSelectFilter] = useState("")
+
+    const [date, setDate] = useState("")
+    const [time, setTime] = useState("")
+    const [reason, setReason] = useState("")
+    const [dr, setDr] = useState("")
 
     return (
         <section className="dashboard-container">
@@ -91,10 +96,10 @@ function Dashboard()  {
                                 className="search-input"
                                 type="text"
                                 placeholder="Search..."
-                                maxLength="30"
+                                maxLength="25"
                                 autoComplete="off"
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
+                                value={searchName}
+                                onChange={(event) => setSearchName(event.target.value)}
                                  />
                         </label>
                     </div>
@@ -151,12 +156,54 @@ function Dashboard()  {
                     ))}
                 </Table>
             </div>
-            <div className="edit-form">
+            <div className="edit-form-wrapper">
                 <Button className="close-form">
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Edit Appointment</div>
-                
+                <Form className="appointment-edit-form">
+                    <div className="input-wrapper">
+                        <label htmlFor="date">Date</label>
+                        <Input
+                            type="date"
+                            value={date}
+                            id="date"
+                            onChange={e => setDate(e.target.value)}
+                             />
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="reason">Reason</label>
+                        <Input 
+                            type="text"
+                            value={reason}
+                            id="reason"
+                            onChange={e => setReason(e.target.value)}
+                            maxLength="25"
+                            autoComplete="off"
+                        />
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="time">Time</label>
+                        <Input 
+                            type="text"
+                            value={time}
+                            id="time"
+                            onChange={e => setTime(e.target.value)}
+                            maxLength="5"
+                            autoComplete="off"
+                        />
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="doctor">Doctor</label>
+                        <Select 
+                            className="edit-form-select"
+                            value={dr}
+                            onChange={e => setDr(e.target.value)}>
+                                <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+
+                            </Select>
+                    </div>
+                </Form>
             </div>
         </section>
     )
