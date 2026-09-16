@@ -28,7 +28,8 @@ function reducer(state, action) {
                                                                                     date: action.payload.date,
                                                                                     time: action.payload.time,
                                                                                     reason: action.payload.reason,
-                                                                                    doctorId: action.payload.doctorId}
+                                                                                    doctorId: action.payload.doctorId,
+                                                                                    status: action.payload.status}
                                                                                  : appt) }
         case 'TOGGLE': return {...state, 
                                appointments: state.appointments.map(appt => appt.id === action.payload.id

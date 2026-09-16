@@ -36,6 +36,7 @@ function Dashboard()  {
     const [formContainer, setFormContainer] = useState(false)
     const [formSuccess, setFormSuccess] = useState("")
     const [formError, setFormError] = useState("")
+    const [apptId, setApptId] = useState("")
 
     const {setSUCCESS,
             SUCCESS,
@@ -47,10 +48,17 @@ function Dashboard()  {
         const clear = setTimeout(() => {
             setSUCCESS(false)
             setERROR(false)
+            setFormSuccess("")
+            setFormError("")
         },2000)
 
         return () => clearTimeout(clear)
-    },[SUCCESS,ERROR,setSUCCESS,setERROR])
+    },[SUCCESS,
+        ERROR,
+        setSUCCESS,
+        setERROR,
+        formSuccess,
+        formError])
 
     async function handleCancel(obj,id) {
         const result = await cancelAppointment(obj,id)
@@ -108,8 +116,23 @@ function Dashboard()  {
 
         else {
             const result = await editAppointment({
-                date: 
-            })        
+                date: fdate,
+                reason: freason,
+                time: ftime,
+                status: fstatus,
+                doctorId: doctors.map(doc => doc.name === dr && doc.id).find(id => id!==false)
+            },apptId)  
+
+            if(result.success) {
+                setFormSuccess(result.mssg)
+                setMessage(result.mssg)
+                setSUCCESS(result.success)
+            }
+            if(!result.success) {
+                setFormError(`*${result.mssg}`)
+                setERROR(!result.success)
+                setMessage(result.mssg)
+            }
         }
         
     }
@@ -212,6 +235,7 @@ function Dashboard()  {
                                         setFtime(appt.time)
                                         setDr(docName(appt.doctorId))
                                         setFstatus(appt.status)
+                                        setApptId(appt.id)
                                         setFormContainer(true)
                                     }} className="table-data-button">
                                         <i className="fa-regular fa-pen-to-square"></i>

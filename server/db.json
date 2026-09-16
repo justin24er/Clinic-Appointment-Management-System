@@ -68,13 +68,13 @@
       "status": "Cancelled"
     },
     {
-       "id": "a3",
-       "patientId": "p3",
-       "doctorId": "d3",
-       "date": "2026-09-17",
-       "time": "09:15",
-       "reason": "Child vaccination checkup",
-       "status": "Confirmed"
+      "id": "a3",
+      "patientId": "p3",
+      "doctorId": "d3",
+      "date": "2027-01-02",
+      "time": "07:00",
+      "reason": "Cancer checkup",
+      "status": "Completed"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
