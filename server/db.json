@@ -35,14 +35,14 @@
     },
     {
       "id": "d2",
-      "name": "Dr. Fatma Juma",
+      "name": "Dr.Fatma Juma",
       "specialty": "Cardiology",
       "phone": "0765-555-202",
       "email": "f.juma@clinic.co.tz"
     },
     {
       "id": "d3",
-      "name": "Dr. Peter Massawe",
+      "name": "Dr.Peter Massawe",
       "specialty": "Pediatrics",
       "phone": "0688-555-303",
       "email": "p.massawe@clinic.co.tz"
@@ -56,7 +56,7 @@
       "date": "2026-09-15",
       "time": "10:30",
       "reason": "General consultation",
-      "status": "Cancelled"
+      "status": "Scheduled"
     },
     {
       "id": "a2",
@@ -68,13 +68,13 @@
       "status": "Cancelled"
     },
     {
-      "id": "a3",
-      "patientId": "p3",
-      "doctorId": "d3",
-      "date": "2026-09-17",
-      "time": "09:15",
-      "reason": "Child vaccination checkup",
-      "status": "Scheduled"
+       "id": "a3",
+       "patientId": "p3",
+       "doctorId": "d3",
+       "date": "2026-09-17",
+       "time": "09:15",
+       "reason": "Child vaccination checkup",
+       "status": "Confirmed"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
