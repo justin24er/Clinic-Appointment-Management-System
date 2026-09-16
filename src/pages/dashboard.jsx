@@ -33,6 +33,9 @@ function Dashboard()  {
     const [reason, setReason] = useState("")
     const [dr, setDr] = useState("")
     const [status, setStatus] = useState("");
+    const [formContainer, setFormContainer] = useState(false)
+    const [formSuccess, setFormSuccess] = useState("")
+    const [formError, setFormError] = useState("")
 
     const {setSUCCESS,
             SUCCESS,
@@ -95,7 +98,11 @@ function Dashboard()  {
     function handleEditForm(event) {
         event.preventDefault();
 
-
+        if(date === "" ||
+            reason === "" ||
+            reason === "" ||
+            time === ""
+        ) 
     }
 
     return (
@@ -196,6 +203,7 @@ function Dashboard()  {
                                         setTime(appt.time)
                                         setDr(docName(appt.doctorId))
                                         setStatus(appt.status)
+                                        setFormContainer(true)
                                     }} className="table-data-button">
                                         <i className="fa-regular fa-pen-to-square"></i>
                                     </Button>
@@ -238,70 +246,72 @@ function Dashboard()  {
                     </Table>
                     }
             </div>
-            <div className="edit-form-wrapper">
-                <Button className="close-form">
-                    <i className="fa-solid fa-xmark"></i>
-                </Button>
-                <div className="form-title">Edit Appointment</div>
-                <Form className="appointment-edit-form">
-                    <div className="input-wrapper">
-                        <label htmlFor="date">Date</label>
-                        <Input
-                            type="date"
-                            value={date}
-                            id="date"
-                            onChange={e => setDate(e.target.value)}
-                             />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="reason">Reason</label>
-                        <Input 
-                            type="text"
-                            value={reason}
-                            id="reason"
-                            onChange={e => setReason(e.target.value)}
-                            maxLength="25"
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="time">Time</label>
-                        <Input 
-                            type="text"
-                            value={time}
-                            id="time"
-                            onChange={e => setTime(e.target.value)}
-                            maxLength="5"
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="doctor">Doctor</label>
-                        <Select 
-                            className="edit-form-select"
-                            value={dr}
-                            onChange={e => setDr(e.target.value)}>
+            <div style={{display: formContainer ? "flex" : "none"}} className="edit-form-section">
+                <div className="edit-form-wrapper">
+                    <Button onClick={() => setFormContainer(false)} className="close-form">
+                        <i className="fa-solid fa-xmark"></i>
+                    </Button>
+                    <div className="form-title">Edit Appointment</div>
+                    <Form onChange={handleEditForm} className="appointment-edit-form">
+                        <div className="input-wrapper">
+                            <label htmlFor="date">Date</label>
+                            <Input
+                                type="date"
+                                value={date}
+                                id="date"
+                                onChange={e => setDate(e.target.value)}
+                                 />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="reason">Reason</label>
+                            <Input 
+                                type="text"
+                                value={reason}
+                                id="reason"
+                                onChange={e => setReason(e.target.value)}
+                                maxLength="25"
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="time">Time</label>
+                            <Input 
+                                type="text"
+                                value={time}
+                                id="time"
+                                onChange={e => setTime(e.target.value)}
+                                maxLength="5"
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="doctor">Doctor</label>
+                            <Select 
+                                className="edit-form-select"
+                                value={dr}
+                                onChange={e => setDr(e.target.value)}>
+                                    <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                                    {doctors.map(doc => (
+                                        <option value={doc.name}>{doc.name}</option>
+                                    ))}
+                                </Select>
+                        </div>
+                        <div className="input-wrapper">
+                            <label htmlFor="status">Status</label>
+                             <Select
+                                className="status-form-select"
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}>
                                 <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
-                                {doctors.map(doc => (
-                                    <option value={doc.name}>{doc.name}</option>
-                                ))}
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
                             </Select>
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="status">Status</label>
-                         <Select
-                            className="status-form-select"
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value)}>
-                            <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
-                            <option value="Scheduled">Scheduled</option>
-                            <option value="Confirmed">Confirmed</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </Select>
-                    </div>
-                    <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
-                </Form>
+                        </div>
+                        <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
+                    </Form>
+                </div>
             </div>
         </section>
     )
