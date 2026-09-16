@@ -15,7 +15,6 @@ function Dashboard()  {
     const {appointments,
           loadingAppts,
           errorAppts,
-          addAppointment,
           cancelAppointment,
           editAppointment,
           removeAppointment,
@@ -33,6 +32,7 @@ function Dashboard()  {
     const [time, setTime] = useState("")
     const [reason, setReason] = useState("")
     const [dr, setDr] = useState("")
+    const [status, setStatus] = useState("");
 
     const {setSUCCESS,
             SUCCESS,
@@ -71,6 +71,31 @@ function Dashboard()  {
             setSUCCESS(!result.success) 
             setMessage(result.mssg)
         }
+    }
+
+    async function handleRemove(id) {
+        const result = await removeAppointment(id)
+        if(result.success) {
+            setSUCCESS(result.success)
+            setMessage(result.mssg)
+        }
+        if(!result.success) {
+            setERROR(!result.success)
+            setMessage(result.mssg)
+        }
+    }
+
+    function docName(id) {
+        return doctors.map(doc => doc.id === id && doc.name).find(x => x!=false)
+    }
+    function patientName(id) {
+        return patients.map(pat => pat.id === id && pat.name).find(z => z!=false)
+    }
+
+    function handleEditForm(event) {
+        event.preventDefault();
+
+
     }
 
     return (
@@ -165,7 +190,13 @@ function Dashboard()  {
                         {appointments.map(appt => (
                             <tr>
                                 <td>
-                                    <Button className="table-data-button">
+                                    <Button onClick={() => {
+                                        setDate(appt.date)
+                                        setReason(appt.reason)
+                                        setTime(appt.time)
+                                        setDr(docName(appt.doctorId))
+                                        setStatus(appt.status)
+                                    }} className="table-data-button">
                                         <i className="fa-regular fa-pen-to-square"></i>
                                     </Button>
                                </td>
@@ -176,14 +207,10 @@ function Dashboard()  {
                                     {appt.time}
                                 </td>
                                 <td>
-                                    {doctors.map(doc => doc.id === appt.doctorId
-                                                    && doc.name
-                                    ) || "loading..."}
+                                    {docName(appt.doctorId) || "loading..."}
                                 </td>
                                 <td>
-                                    {patients.map(pat => pat.id === appt.patientId 
-                                                    && pat.name
-                                    ) || "loading..."}
+                                    {patientName(appt.patientId) || "loading..."}
                                 </td>
                                 <td>
                                     {appt.reason}
@@ -200,7 +227,9 @@ function Dashboard()  {
                                     </Button>
                                 </td>
                                 {appt.status === "Cancelled" && <td>
-                                    <Button class="table-data-button delete">
+                                    <Button 
+                                        onClick={() => handleRemove(appt.id)}
+                                        class="table-data-button delete">
                                         <i className="fa-solid fa-trash-can"></i>
                                     </Button>
                                 </td>}
@@ -257,6 +286,19 @@ function Dashboard()  {
                                     <option value={doc.name}>{doc.name}</option>
                                 ))}
                             </Select>
+                    </div>
+                    <div className="input-wrapper">
+                        <label htmlFor="status">Status</label>
+                         <Select
+                            className="status-form-select"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}>
+                            <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </Select>
                     </div>
                     <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
                 </Form>
