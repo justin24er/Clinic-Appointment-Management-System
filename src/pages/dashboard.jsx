@@ -28,11 +28,11 @@ function Dashboard()  {
     const [selectSearch, setSelectSearch] = useState("")
     const [selectFilter, setSelectFilter] = useState("")
 
-    const [date, setDate] = useState("")
-    const [time, setTime] = useState("")
-    const [reason, setReason] = useState("")
+    const [fdate, setFdate] = useState("")
+    const [ftime, setFtime] = useState("")
+    const [freason, setFreason] = useState("")
     const [dr, setDr] = useState("")
-    const [status, setStatus] = useState("");
+    const [fstatus, setFstatus] = useState("");
     const [formContainer, setFormContainer] = useState(false)
     const [formSuccess, setFormSuccess] = useState("")
     const [formError, setFormError] = useState("")
@@ -95,14 +95,23 @@ function Dashboard()  {
         return patients.map(pat => pat.id === id && pat.name).find(z => z!=false)
     }
 
-    function handleEditForm(event) {
+    async function handleEditForm(event) {
         event.preventDefault();
+        const pattern = /^\d{1,2}:\d{1,2}$/;
 
-        if(date === "" ||
-            reason === "" ||
-            reason === "" ||
-            time === ""
-        ) 
+        if(fdate === "" ||
+            freason === "" ||
+            ftime === ""
+        ) setFormError("*fill all sections") 
+
+        else if(!pattern.test(ftime)) setFormError("*incorrect TIME format,use 00:00 format")
+
+        else {
+            const result = await editAppointment({
+                date: 
+            })        
+        }
+        
     }
 
     return (
@@ -198,11 +207,11 @@ function Dashboard()  {
                             <tr>
                                 <td>
                                     <Button onClick={() => {
-                                        setDate(appt.date)
-                                        setReason(appt.reason)
-                                        setTime(appt.time)
+                                        setFdate(appt.date)
+                                        setFreason(appt.reason)
+                                        setFtime(appt.time)
                                         setDr(docName(appt.doctorId))
-                                        setStatus(appt.status)
+                                        setFstatus(appt.status)
                                         setFormContainer(true)
                                     }} className="table-data-button">
                                         <i className="fa-regular fa-pen-to-square"></i>
@@ -252,23 +261,23 @@ function Dashboard()  {
                         <i className="fa-solid fa-xmark"></i>
                     </Button>
                     <div className="form-title">Edit Appointment</div>
-                    <Form onChange={handleEditForm} className="appointment-edit-form">
+                    <Form onSubmit={handleEditForm} className="appointment-edit-form">
                         <div className="input-wrapper">
                             <label htmlFor="date">Date</label>
                             <Input
                                 type="date"
-                                value={date}
+                                value={fdate}
                                 id="date"
-                                onChange={e => setDate(e.target.value)}
+                                onChange={e => setFdate(e.target.value)}
                                  />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="reason">Reason</label>
                             <Input 
                                 type="text"
-                                value={reason}
+                                value={freason}
                                 id="reason"
-                                onChange={e => setReason(e.target.value)}
+                                onChange={e => setFreason(e.target.value)}
                                 maxLength="25"
                                 autoComplete="off"
                             />
@@ -277,10 +286,11 @@ function Dashboard()  {
                             <label htmlFor="time">Time</label>
                             <Input 
                                 type="text"
-                                value={time}
+                                value={ftime}
                                 id="time"
-                                onChange={e => setTime(e.target.value)}
+                                onChange={e => setFtime(e.target.value)}
                                 maxLength="5"
+                                placeholder="00:00"
                                 autoComplete="off"
                             />
                         </div>
@@ -300,8 +310,8 @@ function Dashboard()  {
                             <label htmlFor="status">Status</label>
                              <Select
                                 className="status-form-select"
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}>
+                                value={fstatus}
+                                onChange={(e) => setFstatus(e.target.value)}>
                                 <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
                                 <option value="Scheduled">Scheduled</option>
                                 <option value="Confirmed">Confirmed</option>
@@ -309,6 +319,8 @@ function Dashboard()  {
                                 <option value="Cancelled">Cancelled</option>
                             </Select>
                         </div>
+                        {formSuccess && <div className="status form-success">{formSuccess}</div>}
+                        {formError && <div className="status form-error">{formError}</div>}
                         <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
                     </Form>
                 </div>
