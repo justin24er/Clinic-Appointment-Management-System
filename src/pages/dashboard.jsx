@@ -26,7 +26,7 @@ function Dashboard()  {
 
     const [searchName, setSearchName] = useState("")
     const [selectSearch, setSelectSearch] = useState("")
-    const [selectFilter, setSelectFilter] = useState("")
+    const [selectFilter, setSelectFilter] = useState("All")
 
     const [fdate, setFdate] = useState("")
     const [ftime, setFtime] = useState("")
@@ -37,7 +37,13 @@ function Dashboard()  {
     const [formSuccess, setFormSuccess] = useState("")
     const [formError, setFormError] = useState("")
     const [apptId, setApptId] = useState("")
+    let filter = [];
 
+    if(selectFilter === "All") {
+        filter = appointments
+    }
+    else {}
+    
     const {setSUCCESS,
             SUCCESS,
             setERROR,
@@ -171,7 +177,7 @@ function Dashboard()  {
                     </DashboardCard>
                 </div>
                 <div className="dash-controlls">
-                    <div className="filter-controll">
+                    <div className="filter-controlls">
                         <span>filter <i className="fa-solid fa-filter"></i></span>
                         <Select
                             className="filter-select"
@@ -226,8 +232,8 @@ function Dashboard()  {
                             <th>Cancel</th>
                             <th>Delete</th>
                         </tr>
-                        {appointments.map(appt => (
-                            <tr>
+                        {filter.map(appt => (
+                            <tr key={appt.id}>
                                 <td>
                                     <Button onClick={() => {
                                         setFdate(appt.date)
@@ -325,8 +331,8 @@ function Dashboard()  {
                                 value={dr}
                                 onChange={e => setDr(e.target.value)}>
                                     <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
-                                    {doctors.map(doc => (
-                                        <option value={doc.name}>{doc.name}</option>
+                                    {doctors.map((doc,index) => (
+                                        <option key={index} value={doc.name}>{doc.name}</option>
                                     ))}
                                 </Select>
                         </div>
