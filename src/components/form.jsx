@@ -2,12 +2,12 @@ import '../styles/form.css'
 
 function Form({
             children,
-            onChange,
+            onSubmit,
             className}) {
     return <form 
             action="#" 
             method="Post"
-            onChange={onChange}
+            onSubmit={onSubmit}
             className={className}
             >{children}</form>
 }
