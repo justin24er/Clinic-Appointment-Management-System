@@ -56,7 +56,7 @@
       "date": "2026-09-15",
       "time": "10:30",
       "reason": "General consultation",
-      "status": "Scheduled"
+      "status": "Confirmed"
     },
     {
       "id": "a2",
@@ -65,7 +65,7 @@
       "date": "2026-09-16",
       "time": "14:00",
       "reason": "Follow-up on heart palpitations",
-      "status": "Cancelled"
+      "status": "Scheduled"
     },
     {
       "id": "a3",
