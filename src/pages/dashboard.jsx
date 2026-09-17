@@ -61,14 +61,26 @@ function Dashboard()  {
                                                 && pat.id)
                                                 .filter(id => id!==false)
             if(pat_ids.length > 0) {
-                const apptSearchResult = appointments.filter(appt => pat_ids.includes(appt.patientId))
-                console.log(apptSearchResult)
+                const searchResult = appointments.filter(appt => pat_ids.includes(appt.patientId))
+                setFilter(searchResult)
             }
-            /* if(patients.some(pat => pat.name.trim().toLowerCase() === trimed_name)) {
-                const pat_ids = patients.map(pat => pat.name.toLowerCase().trim() === trimed_name && pat.id)
-                const searched_appts = appointments.filter(appt => pat_ids.includes(appt.patientId))
-            } */
+            else setFilter([])
         }
+        else if(selectSearch === "Doctor name" && trimed_name) {
+            const doct_ids = doctors.map(doc => doc.name
+                                                .trim()
+                                                .toLowerCase()
+                                                .includes(trimed_name)
+                                                && doc.id)
+                                                .filter(id => id!==false)
+            if(doct_ids.length > 0) {
+                const searchResult = appointments.filter(appt => doct_ids.includes(appt.doctorId))
+                setFilter(searchResult)
+            }
+            else setFilter([])
+        }
+        else if(!trimed_name) setFilter(appointments)
+
     },[searchName,selectSearch,patients,appointments])
 
     const {setSUCCESS,
