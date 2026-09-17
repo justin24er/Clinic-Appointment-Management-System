@@ -56,7 +56,7 @@
       "date": "2026-09-15",
       "time": "10:30",
       "reason": "General consultation",
-      "status": "Confirmed"
+      "status": "Scheduled"
     },
     {
       "id": "a2",
@@ -74,7 +74,7 @@
       "date": "2027-01-02",
       "time": "07:00",
       "reason": "Cancer checkup",
-      "status": "Completed"
+      "status": "Scheduled"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
