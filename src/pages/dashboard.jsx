@@ -1,4 +1,4 @@
-import {useState,useEffect,useContext} from 'react'
+import {useState,useEffect,useContext,useRef} from 'react'
 import useAppointments from '../hooks/useAppointments' 
 import useDoctors from '../hooks/useDoctors'
 import usePatients from '../hooks/usePatients'
@@ -25,7 +25,7 @@ function Dashboard()  {
     const {patients} = usePatients();
 
     const [searchName, setSearchName] = useState("")
-    const [selectSearch, setSelectSearch] = useState("")
+    const [selectSearch, setSelectSearch] = useState("Patient name")
     const [selectFilter, setSelectFilter] = useState("All")
 
     const [fdate, setFdate] = useState("")
@@ -37,13 +37,40 @@ function Dashboard()  {
     const [formSuccess, setFormSuccess] = useState("")
     const [formError, setFormError] = useState("")
     const [apptId, setApptId] = useState("")
-    let filter = [];
-
-    if(selectFilter === "All") {
-        filter = appointments
-    }
-    else {}
     
+
+    const appointSearch = useRef();
+    const [filter, setFilter] = useState(appointments)
+    
+    useEffect(() => {
+        if(selectFilter === 'All') {
+            setFilter(appointments)
+        }else {
+            setFilter(appointments.filter(appt => appt.status === selectFilter))
+        }
+    },[selectFilter,appointments])
+
+    useEffect(() => {
+        appointSearch.current.focus()
+        const trimed_name = searchName.trim().toLowerCase();
+        if(selectSearch === "Patient name" && trimed_name) {
+            const pat_ids = patients.map(pat => pat.name
+                                                .trim()
+                                                .toLowerCase()
+                                                .includes(trimed_name)
+                                                && pat.id)
+                                                .filter(id => id!==false)
+            if(pat_ids.length > 0) {
+                const apptSearchResult = appointments.filter(appt => pat_ids.includes(appt.patientId))
+                console.log(apptSearchResult)
+            }
+            /* if(patients.some(pat => pat.name.trim().toLowerCase() === trimed_name)) {
+                const pat_ids = patients.map(pat => pat.name.toLowerCase().trim() === trimed_name && pat.id)
+                const searched_appts = appointments.filter(appt => pat_ids.includes(appt.patientId))
+            } */
+        }
+    },[searchName,selectSearch,patients,appointments])
+
     const {setSUCCESS,
             SUCCESS,
             setERROR,
@@ -209,6 +236,7 @@ function Dashboard()  {
                                 placeholder="Search..."
                                 maxLength="25"
                                 autoComplete="off"
+                                ref={appointSearch}
                                 value={searchName}
                                 onChange={(event) => setSearchName(event.target.value)}
                                  />
