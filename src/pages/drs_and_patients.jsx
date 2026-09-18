@@ -12,11 +12,19 @@ function Drs_patients() {
     const [dspecialty, setDspecialty] = useState("")
     const [dphone, setDphone] = useState("")
     const [demail, setDemail] = useState("")
+
     const [pname, setPname] = useState("")
     const [p_age, setP_age] = useState("")
     const [p_phone, setP_phone] = useState("")
     const [paddress, setPaddress] = useState("")
     const [gender, setGender] = useState("")
+
+    const [docForm, setDocForm] = useState(false)
+    const [patForm, setPatForm] = useState(false)
+
+    const [formSuccess, setFormSuccess] = useState("")
+    const [formError, setFormError] = useState("")
+
     const {doctors,
            loadingDocs,
            errorDocs,
@@ -31,6 +39,15 @@ function Drs_patients() {
 
     const { setSUCCESS, setERROR, setMessage } = useContext(notification)
 
+    useEffect(() => {
+        const clear = setTimeout(() => {
+            setFormSuccess("")
+            setFormError("")
+        },2000)
+
+        return () => clearTimeout(clear)
+    },[formError,formSuccess])
+
     async function doctorDelete(id) {
         const result = await removeDoctor(id)
         if(result.success) {
@@ -42,12 +59,43 @@ function Drs_patients() {
             setMessage(result.mssg)
         }
     }
+
+    async function patientDelete(id) {
+        const result = await removePatient(id)
+        if(result.success) {
+            setSUCCESS(result.success)
+            setMessage(result.mssg)
+        }
+        if(!result.success) {
+            setERROR(!result.success)
+            setMessage(result.mssg)
+        }
+    }
+
+    async function handleDoctorAdd() {
+        const mobile_pattern = /^\+?[0-9 -]{10,15}$/
+        const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]$/ 
+        if(dname === "" ||
+           dspecialty === "" ||
+           dphone === "" ||
+           demail === ""
+        ) setFormError("*fill all sections");
+        else if(!mobile_pattern.test(dphone)) setFormError("*Invalid Phone number");
+        else if(!email_pattern.test(demail)) setFormError("*Invalid email format");
+    }
+
+    async function handlePatientAdd() {
+
+    }
+
     return (
     <section className="list-wrapper">
         <div className="doctors-list">
             <span className="list-header">
                 <span>Doctors</span>
-                <Button className="addDoctor-btn">add</Button>
+                <Button 
+                    className="addDoctor-btn"
+                    onClick={() => setDocForm(true)}>add</Button>
             </span>
             {loadingDocs && <div className="loading">loading...</div>}
             {errorDocs ? <div className="loading-error">{errorDocs}</div> :
@@ -80,7 +128,9 @@ function Drs_patients() {
         <div className="patients-list">
             <span className="list-header">
                 <span>Patients</span>
-                <Button className="addPatient-btn">add</Button>
+                <Button 
+                    className="addPatient-btn"
+                    onClick={() => setPatForm(true)}>add</Button>
             </span>
             {loadingPatients && <div className="loading">loading...</div>}
             {errorPatients ? <div className="loading-error">{errorPatients}</div> :
@@ -112,13 +162,13 @@ function Drs_patients() {
             </Table>}
         </div>
 
-        <div className="add-form-section">
-            <div className="add-doctor-form-wrapper">
-                <Button className="close-form">
+        <div style={{display: (docForm || patForm) ? "flex" : "none"}} className="add-form-section">
+            <div style={{display: docForm ? "flex" : "none"}} className="add-doctor-form-wrapper">
+                <Button onClick={() => setDocForm(false)} className="close-form">
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Doctor</div>
-                <Form>
+                <Form onSubmit={handleDoctorAdd}>
                     <Input 
                         type="text"
                         value={dname}
@@ -152,12 +202,12 @@ function Drs_patients() {
                     <Button type="submit" >CONFIRM</Button>
                 </Form>
             </div>
-            <div className="add-patient-form-wrapper">
-                <Button className="close-form">
+            <div style={{display: patForm ? "flex" : "none"}} className="add-patient-form-wrapper">
+                <Button onClick={() => setPatForm(false)} className="close-form">
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Patient</div>
-                <Form>
+                <Form onSubmit={handlePatientAdd}>
                     <Input 
                         type="text"
                         placeholder="Name"
