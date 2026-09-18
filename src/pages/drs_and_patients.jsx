@@ -72,7 +72,9 @@ function Drs_patients() {
         }
     }
 
-    async function handleDoctorAdd() {
+    async function handleDoctorAdd(event) {
+        event.preventDefault()
+
         const mobile_pattern = /^\+?[0-9 -]{10,15}$/
         const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]$/ 
         if(dname === "" ||
@@ -200,6 +202,8 @@ function Drs_patients() {
                         onChange={e => setDemail(e.target.value)}
                         />
                     <Button type="submit" >CONFIRM</Button>
+                    {formSuccess && <div className="status form-success">{formSuccess}</div>}
+                    {formError && <div className="status form-error">{formError}</div>}
                 </Form>
             </div>
             <div style={{display: patForm ? "flex" : "none"}} className="add-patient-form-wrapper">
@@ -257,6 +261,8 @@ function Drs_patients() {
                             <span>Female</span>
                     </label>
                     <Button type="submit">CONFIRM</Button>
+                    {formSuccess && <div className="status form-success">{formSuccess}</div>}
+                    {formError && <div className="status form-error">{formError}</div>}
                 </Form>
             </div>
         </div>
