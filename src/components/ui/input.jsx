@@ -9,7 +9,10 @@ function Input({
     maxLength,
     autoComplete,
     ref,
-    onChange
+    onChange,
+    pattern,
+    title,
+    name
 }) {
     return <input
             type={type}
@@ -17,8 +20,11 @@ function Input({
             className={className}
             ref={ref}
             id={id}
+            title={title}
+            name={name}
             placeholder={placeholder}
             maxLength={maxLength}
+            pattern={pattern}
             autoComplete={autoComplete}
             onChange={onChange} />
 }

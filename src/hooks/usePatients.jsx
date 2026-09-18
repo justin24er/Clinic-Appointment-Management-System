@@ -66,10 +66,10 @@ function usePatients() {
                 type: 'ADD',
                 payload: feedback
             })
-            return {success: true}
+            return {success: true, mssg: "added successfully!"}
         }
         catch(err) {
-            return {success: false, error: err.message}
+            return {success: false, mssg: err.message}
         }
     }
 
@@ -80,10 +80,10 @@ function usePatients() {
                 type: 'REMOVE',
                 payload: obj_id
             })
-            return {success: true}
+            return {success: true, mssg: "removed successfully!"}
         }
         catch(err) {
-            return {success: true, error: err.message}
+            return {success: true, mssg: err.message}
         }
     }
 

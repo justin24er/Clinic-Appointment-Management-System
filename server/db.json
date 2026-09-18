@@ -44,7 +44,6 @@
       "id": "d3",
       "name": "Dr.Peter Massawe",
       "specialty": "Pediatrics",
-                <span></span>
       "phone": "0688-555-303",
       "email": "p.massawe@clinic.co.tz"
     }
@@ -66,7 +65,7 @@
       "date": "2026-09-16",
       "time": "14:00",
       "reason": "Follow-up on heart palpitations",
-      "status": "Cancelled"
+      "status": "Scheduled"
     },
     {
       "id": "a3",
@@ -75,7 +74,7 @@
       "date": "2027-01-02",
       "time": "07:00",
       "reason": "Cancer checkup",
-      "status": "Scheduled"
+      "status": "Cancelled"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
