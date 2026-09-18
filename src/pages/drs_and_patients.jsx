@@ -76,7 +76,7 @@ function Drs_patients() {
         event.preventDefault()
 
         const mobile_pattern = /^\+?[0-9 -]{10,15}$/
-        const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]$/ 
+        const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i // letter "i" allows case-insensitive
         if(dname === "" ||
            dspecialty === "" ||
            dphone === "" ||
@@ -84,6 +84,17 @@ function Drs_patients() {
         ) setFormError("*fill all sections");
         else if(!mobile_pattern.test(dphone)) setFormError("*Invalid Phone number");
         else if(!email_pattern.test(demail)) setFormError("*Invalid email format");
+        else {
+            const result = await addDoctor({
+                name: dname,
+                specialty: dspecialty,
+                phone: dphone,
+                email: demail
+            })
+            if(result.success) {
+                setFormSuccess(result.mssg)
+            }
+        }
     }
 
     async function handlePatientAdd() {
