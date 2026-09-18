@@ -2,8 +2,21 @@ import useDoctors from '../hooks/useDoctors'
 import usePatients from '../hooks/usePatients'
 import Table from '../components/table'
 import Button from '../components/ui/button'
+import Form from '../components/form'
+import Input from "../components/ui/input"
+import { useState, useContext, useEffect } from 'react'
+import { notification } from '../contexts/notifyContext'
 
 function Drs_patients() {
+    const [dname, setDname] = useState("")
+    const [dspecialty, setDspecialty] = useState("")
+    const [dphone, setDphone] = useState("")
+    const [demail, setDemail] = useState("")
+    const [pname, setPname] = useState("")
+    const [p_age, setP_age] = useState("")
+    const [p_phone, setP_phone] = useState("")
+    const [paddress, setPaddress] = useState("")
+    const [gender, setGender] = useState("")
     const {doctors,
            loadingDocs,
            errorDocs,
@@ -15,6 +28,20 @@ function Drs_patients() {
            errorPatients,
            addPatient,
            removePatient} = usePatients()
+
+    const { setSUCCESS, setERROR, setMessage } = useContext(notification)
+
+    async function doctorDelete(id) {
+        const result = await removeDoctor(id)
+        if(result.success) {
+            setSUCCESS(result.success)
+            setMessage(result.mssg)
+        }
+        if(!result.success) {
+            setERROR(!result.success)
+            setMessage(result.mssg)
+        }
+    }
     return (
     <section className="list-wrapper">
         <div className="doctors-list">
@@ -39,7 +66,11 @@ function Drs_patients() {
                         <td>{doc.phone}</td>
                         <td>{doc.email}</td>
                         <td>
-                            <Button className="delete-btn"><i className="fa-solid fa-trash-can"></i></Button>
+                            <Button 
+                                className="delete-btn"
+                                onClick={() => doctorDelete(doc.id)}>
+                                    <i className="fa-solid fa-trash-can"></i>
+                            </Button>
                         </td>
                     </tr>
                 ))}
@@ -70,11 +101,114 @@ function Drs_patients() {
                             <td>{pat.phone}</td>
                             <td>{pat.address}</td>
                             <td>
-                                <Button className="delete-btn"><i className="fa-solid fa-trash-can"></i></Button>
+                                <Button
+                                    className="delete-btn"
+                                    onClick={() => patientDelete(pat.id)}>
+                                        <i className="fa-solid fa-trash-can"></i>
+                                </Button>
                             </td>
                         </tr>
                     ))}
             </Table>}
+        </div>
+
+        <div className="add-form-section">
+            <div className="add-doctor-form-wrapper">
+                <Button className="close-form">
+                    <i className="fa-solid fa-xmark"></i>
+                </Button>
+                <div className="form-title">Add Doctor</div>
+                <Form>
+                    <Input 
+                        type="text"
+                        value={dname}
+                        placeholder="Name"
+                        maxLength="25"
+                        onChange={e => setDname(e.target.value)}
+                        />
+                    <Input 
+                        type="text"
+                        value={dspecialty}
+                        placeholder="Specialty(e.g dentistry,vision)"
+                        onChange={e => setDspecialty(e.target.value)}
+                        maxLength="25"
+                        />
+                    <Input 
+                        type="tel"
+                        value={dphone}
+                        placeholder="Phone(+255)"
+                        onChange={e => setDphone(e.target.value)}
+                        pattern = "\+?[0-9 -]{10,15}"
+                        title="Enter a 10 valid phone number"
+                        autoComplete="tel"
+                        />
+                    <Input 
+                        type="email"
+                        value={demail}
+                        placeholder="example@gmail.com"
+                        autoComplete="email"  
+                        onChange={e => setDemail(e.target.value)}
+                        />
+                    <Button type="submit" >CONFIRM</Button>
+                </Form>
+            </div>
+            <div className="add-patient-form-wrapper">
+                <Button className="close-form">
+                    <i className="fa-solid fa-xmark"></i>
+                </Button>
+                <div className="form-title">Add Patient</div>
+                <Form>
+                    <Input 
+                        type="text"
+                        placeholder="Name"
+                        value={pname}
+                        maxLength="25"
+                        onChange={e => setPname(e.target.value)}
+                        />
+                    <Input 
+                        type="text"
+                        placeholder="Age"
+                        value={p_age}
+                        maxLength="2"
+                        onChange={e => setP_age(e.target.value)}
+                        />
+                    <Input 
+                        type="tel"
+                        placeholder="Phone(+255)"
+                        value={p_phone}
+                        pattern="\+?[0-9]{10,15}"
+                        title="Enter a 10 valid phone number"
+                        onChange={e => setP_phone(e.target.value)}
+                        autoComplete="tel"
+                        />
+                    <Input 
+                        type="text"
+                        value={paddress}
+                        placeholder="Address"
+                        maxLength="25"
+                        onChange={e => setPaddress(e.target.value)}
+                        />
+                    <label className="male-radio">
+                        <Input 
+                            type="radio"
+                            value="male"
+                            name="gender"
+                            onChange={e => setGender(e.target.value)}
+                            />
+                            <span>Male</span>
+                    </label>
+                    <label className="female-radio">
+                        <Input 
+                            type="radio"
+                            value="female"
+                            name="gender"
+                            onChange={e => setGender(e.target.value)}
+                            />
+                            <span>Female</span>
+                    </label>
+                    <Button type="submit">CONFIRM</Button>
+                </Form>
+            </div>
         </div>
     </section>
     )
