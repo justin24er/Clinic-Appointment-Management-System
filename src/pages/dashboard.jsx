@@ -381,9 +381,9 @@ function Dashboard()  {
                                 <option value="Cancelled">Cancelled</option>
                             </Select>
                         </div>
+                        <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
                         {formSuccess && <div className="status form-success">{formSuccess}</div>}
                         {formError && <div className="status form-error">{formError}</div>}
-                        <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
                     </Form>
                 </div>
             </div>
