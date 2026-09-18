@@ -84,25 +84,17 @@ function Dashboard()  {
     },[searchName,selectSearch,patients,appointments])
 
     const {setSUCCESS,
-            SUCCESS,
             setERROR,
-            ERROR, 
             setMessage} = useContext(notification)
 
     useEffect(() => {
         const clear = setTimeout(() => {
-            setSUCCESS(false)
-            setERROR(false)
             setFormSuccess("")
             setFormError("")
         },2000)
 
         return () => clearTimeout(clear)
-    },[SUCCESS,
-        ERROR,
-        setSUCCESS,
-        setERROR,
-        formSuccess,
+    },[formSuccess,
         formError])
 
     async function handleCancel(obj,id) {
@@ -294,10 +286,10 @@ function Dashboard()  {
                                     {appt.time}
                                 </td>
                                 <td>
-                                    {docName(appt.doctorId) || "loading..."}
+                                    {docName(appt.doctorId) || "--not found--"}
                                 </td>
                                 <td>
-                                    {patientName(appt.patientId) || "loading..."}
+                                    {patientName(appt.patientId) || "--not found--"}
                                 </td>
                                 <td>
                                     {appt.reason}
