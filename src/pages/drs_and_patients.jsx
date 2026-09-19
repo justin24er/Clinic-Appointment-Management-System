@@ -17,7 +17,7 @@ function Drs_patients() {
     const [p_age, setP_age] = useState("")
     const [p_phone, setP_phone] = useState("")
     const [paddress, setPaddress] = useState("")
-    const [gender, setGender] = useState("")
+    const [pgender, setPgender] = useState("")
 
     const [docForm, setDocForm] = useState(false)
     const [patForm, setPatForm] = useState(false)
@@ -93,12 +93,58 @@ function Drs_patients() {
             })
             if(result.success) {
                 setFormSuccess(result.mssg)
+                setSUCCESS(result.mssg)
+                setMessage(result.mssg)
+
+                setDname("")
+                setDspecialty("")
+                setDphone("")
+                setDemail("")
+            }
+            else if(!result.success) {
+                setERROR(!result.success)
+                setMessage(result.mssg)
             }
         }
     }
 
-    async function handlePatientAdd() {
+    async function handlePatientAdd(event) {
+        event.preventDefault();
 
+        const phone_pattern = /^\+?[0-9 -]{10,15}$/
+        if(pname === "" ||
+           p_age === "" ||
+           p_phone === "" ||
+           paddress === ""  ||
+           pgender === ""  
+        ) setFormError("*fill all sections");
+        else if(!Number(p_age)) setFormError("*Incorrent Age format. Use Numbers only")
+        else if(!phone_pattern.test(p_phone)) setFormError("*Invalid Phone number")
+        else {
+            const result = await addPatient({
+                name: pname,
+                age: p_age,
+                phone: p_phone,
+                gender: pgender,
+                address: paddress
+            })
+
+            if(result.success) {
+                setFormSuccess(result.mssg)
+                setSUCCESS(result.success)
+                setMessage(result.mssg)
+
+                setPname("")
+                setP_age("")
+                setP_phone("")
+                setPaddress("")
+                setPgender("")
+            }
+            else if(!result.success) {
+                setERROR(!result.success) 
+                setMessage(result.mssg)
+            }
+        }
     }
 
     return (
@@ -256,18 +302,18 @@ function Drs_patients() {
                     <label className="male-radio">
                         <Input 
                             type="radio"
-                            value="male"
+                            value="Male"
                             name="gender"
-                            onChange={e => setGender(e.target.value)}
+                            onChange={e => setPgender(e.target.value)}
                             />
                             <span>Male</span>
                     </label>
                     <label className="female-radio">
                         <Input 
                             type="radio"
-                            value="female"
+                            value="Female"
                             name="gender"
-                            onChange={e => setGender(e.target.value)}
+                            onChange={e => setPgender(e.target.value)}
                             />
                             <span>Female</span>
                     </label>
