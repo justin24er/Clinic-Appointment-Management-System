@@ -112,6 +112,24 @@
       "time": "07:00",
       "reason": "Cancer checkup",
       "status": "Cancelled"
+    },
+    {
+      "patientId": "p2",
+      "doctorId": "d2",
+      "date": "2026-09-23",
+      "time": "08:45",
+      "reason": "physical therapy service",
+      "status": "Completed",
+      "id": "WfgW2Kl_zgM"
+    },
+    {
+      "patientId": "U_gO-j0OwsA",
+      "doctorId": "4jsQ_JV_jcw",
+      "date": "2026-11-04",
+      "time": "07:00",
+      "reason": "vaccination ",
+      "status": "Scheduled",
+      "id": "8sS6LpEnkfg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
