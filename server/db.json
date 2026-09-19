@@ -23,6 +23,22 @@
       "gender": "Female",
       "phone": "0623-112-233",
       "address": "Sinza, Dar es Salaam"
+    },
+    {
+      "name": "Justin Eladius",
+      "age": "67",
+      "phone": "0673980285",
+      "gender": "Male",
+      "address": "6A Block, G112",
+      "id": "U_gO-j0OwsA"
+    },
+    {
+      "name": "Beatrice Kokusmia Eladius",
+      "age": "14",
+      "phone": "+255673980285",
+      "gender": "Female",
+      "address": "Ndembezi, Shinyanga 245",
+      "id": "SuUkukatWlE"
     }
   ],
   "doctors": [
@@ -46,6 +62,27 @@
       "specialty": "Pediatrics",
       "phone": "0688-555-303",
       "email": "p.massawe@clinic.co.tz"
+    },
+    {
+      "name": "Dr.Aidan Mbelwa Eladius",
+      "specialty": "Neurology",
+      "phone": "0750739864",
+      "email": "aidanNeurons23@gmail.com",
+      "id": "LTSuH4icXy4"
+    },
+    {
+      "name": "surgeon Rweyemamu",
+      "specialty": "Surgery ",
+      "phone": "0779739803",
+      "email": "s.rweyemam909@clinic.co.tz",
+      "id": "Le0HQ-1BVWU"
+    },
+    {
+      "name": "Nurse Innocent",
+      "specialty": "Pharmacy",
+      "phone": "0756842024",
+      "email": "n.innocent@gmail.co.tz",
+      "id": "4jsQ_JV_jcw"
     }
   ],
   "appointments": [
