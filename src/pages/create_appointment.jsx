@@ -58,6 +58,12 @@ function CreateAppt() {
                 setSUCCESS(result.success)
                 setMessage(result.mssg)
                 setFormSuccess(result.mssg)
+
+                setFdate("")
+                setFtime("")
+                setFdoctor("")
+                setFpatient("")
+                setFreason("")
             }
             if(!result.success) {
                 setERROR(!result.success)
