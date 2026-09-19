@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect} from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { notification } from '../contexts/notifyContext'
 import useDoctors from '../hooks/useDoctors'
 import usePatients from '../hooks/usePatients'
@@ -20,11 +20,56 @@ function CreateAppt() {
     const {patients} = usePatients()
 
     const {setSUCCESS, setERROR, setMessage} = useContext(notification)
+    const [formError, setFormError] = useState("")
+    const [formSuccess, setFormSuccess] = useState("")
+
+    const returnPatientId = (name) => patients.map(pat => pat.name === name && pat.id).find(id => id !== false)
+    const returnDoctorId = (name) => doctors.map(doc => doc.name === name && doc.id).find(id => id !== false)
+
+    useEffect(() => {
+        const clear = setTimeout(() => {
+            setFormError("")
+            setFormSuccess("")
+        },2000)
+        return () => clearTimeout(clear) 
+    },[formSuccess, formError])
+
+    async function handleForm(event) {
+        event.preventDefault();
+
+        const time_pattern = /^[0-9]{1,2}:[0-9]{1,2}$/
+        if(fdate === "" ||
+            ftime === "" ||
+            fdoctor === "" ||
+            fpatient === "" ||
+            freason === ""
+        ) setFormError("*fill all sections")
+        else if(!time_pattern.test(ftime)) setFormError("*incorrect TIME format,use 00:00 format")
+        else {
+            const result = await addAppointment({
+                patientId: returnPatientId(fpatient),
+                doctorId: returnDoctorId(fdoctor),
+                date: fdate,
+                time: ftime,
+                reason: freason,
+                status: "Scheduled"
+            })
+            if(result.success) {
+                setSUCCESS(result.success)
+                setMessage(result.mssg)
+                setFormSuccess(result.mssg)
+            }
+            if(!result.success) {
+                setERROR(!result.success)
+                setMessage(result.mssg) 
+            }
+        }
+    }
 
     return (
         <div className="appointment-form-wrapper">
             <span className="appointment-form-title">Create Appointment</span>
-            <Form className="appointment-form">
+            <Form className="appointment-form" onSubmit={handleForm}>
                 <label htmlFor="date">
                     <span>Date</span>
                     <Input
@@ -85,7 +130,8 @@ function CreateAppt() {
                     onChange={e => setFreason(e.target.value)} 
                     />
                 <Button type="submit" className="form-button">CREATE</Button>
-                {}
+                {formSuccess && <div className="status form-success">{formSuccess}</div>}
+                {formError && <div className="status form-error">{formError}</div>}
             </Form>
         </div>
     )
