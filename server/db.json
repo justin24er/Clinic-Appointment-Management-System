@@ -114,6 +114,20 @@
       "phone": "0756179944",
       "email": "ed@clinic.co.tz",
       "id": "f1Ax08Yr_U0"
+    },
+    {
+      "name": "Dr.Ezekiel Shigella",
+      "specialty": "Mental/Physical Therapist",
+      "phone": "07777001111",
+      "email": "ez.shigella@gmail.co.tz",
+      "id": "UN-7UQXgdOc"
+    },
+    {
+      "name": "Nurse Khadija Paul",
+      "specialty": "Pharmaceutist",
+      "phone": "0601117779",
+      "email": "nr.khadij@clinic.co.tz",
+      "id": "sC5osP84jss"
     }
   ],
   "appointments": [
@@ -161,6 +175,15 @@
       "reason": "vaccination ",
       "status": "Scheduled",
       "id": "8sS6LpEnkfg"
+    },
+    {
+      "patientId": "ts0tLjuuy4s",
+      "doctorId": "d1",
+      "date": "2026-09-20",
+      "time": "17:20",
+      "reason": "Mental therapy",
+      "status": "Confirmed",
+      "id": "L1w1BurxBuU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
