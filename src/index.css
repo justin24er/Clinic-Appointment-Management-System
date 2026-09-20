@@ -11,7 +11,7 @@
     --ff-primary: 'Poppins';
     --teal: #018081;
     --mint: #E1E9F4;
-    --black-charcoal: #181717;
+    --black-charcoal: #444242;
 
     --total-card: #018081;
     --scheduled-card: #018081;
@@ -25,8 +25,17 @@
     --fw-600: 600;
     --fw-700: 700;
 
-    --fs-400: 11px;
+    --fs-400: 12px;
     --fs-500: 14px;
     --fs-600: 18px; 
-    --fs-700: 1.5rem;
+    --fs-700: 1.8rem;
+}
+body {
+    font-family: var(--ff-primary);
+    font-size: var(--fs-500);
+    background: var(--mint);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
 }
