@@ -39,6 +39,30 @@
       "gender": "Female",
       "address": "Ndembezi, Shinyanga 245",
       "id": "SuUkukatWlE"
+    },
+    {
+      "name": "Nulldin Emmanuel",
+      "age": "39",
+      "phone": "0713343122",
+      "gender": "Male",
+      "address": "vatican City",
+      "id": "lvMA6FtRk0A"
+    },
+    {
+      "name": "Glory Goodlight",
+      "age": "22",
+      "phone": "06290111333",
+      "gender": "Female",
+      "address": "Arusha,street144",
+      "id": "ts0tLjuuy4s"
+    },
+    {
+      "name": "Jackline Kerry",
+      "age": "42",
+      "phone": "+25488981001",
+      "gender": "Female",
+      "address": "Nairobi,street001",
+      "id": "y2IH7kduNCc"
     }
   ],
   "doctors": [
@@ -83,6 +107,13 @@
       "phone": "0756842024",
       "email": "n.innocent@gmail.co.tz",
       "id": "4jsQ_JV_jcw"
+    },
+    {
+      "name": "Dr.Edilson Mutechura",
+      "specialty": "Brain nerves",
+      "phone": "0756179944",
+      "email": "ed@clinic.co.tz",
+      "id": "f1Ax08Yr_U0"
     }
   ],
   "appointments": [

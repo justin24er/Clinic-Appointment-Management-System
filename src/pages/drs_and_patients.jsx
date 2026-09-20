@@ -138,7 +138,6 @@ function Drs_patients() {
                 setP_age("")
                 setP_phone("")
                 setPaddress("")
-                setPgender("")
             }
             else if(!result.success) {
                 setERROR(!result.success) 
