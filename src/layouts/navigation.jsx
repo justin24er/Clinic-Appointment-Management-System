@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import '../styles/navigation.css';
 import { notification } from '../contexts/notifyContext';
-import { useContext } from 'react';
+import { useContext} from 'react';
 
 function Navigation({children})  {
     const {SUCCESS, ERROR, message} = useContext(notification);
@@ -15,9 +15,9 @@ function Navigation({children})  {
             <h2 className="primary-heading">Clinic Appointment Management System</h2>
             <main>
                 <nav className="main-navigation">
-                    <Link to='/' className="dashboard-nav">dashboard</Link>
-                    <Link to='/doctors_and_patients' className="dashboard-nav">doctors/patients</Link>
-                    <Link to='/create_appointment' className="dashboard-nav">create appointment</Link>
+                    <NavLink to='/' className={({isActive}) => isActive && "active"}>dashboard</NavLink>
+                    <NavLink to='/doctors_and_patients' className={({isActive}) => isActive && "active"}>doctors/patients</NavLink>
+                    <NavLink to='/create_appointment' className={({isActive}) => isActive && "active"}>create appointment</NavLink>
                 </nav>
                 <section className="page-section">
                     {children}
