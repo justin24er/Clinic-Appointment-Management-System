@@ -1,0 +1,37 @@
+select {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    color: var(--teal);
+    appearance: base-select;
+    background: var(--wt);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+    padding-inline: .5rem;
+    cursor: pointer;
+
+    &::picker-icon {
+        display: none;
+    }
+    &::picker(select) {
+        appearance: base-select;
+        color: var(--teal);
+        margin-block: .5rem;
+        border-radius: 12px;
+        border: 1px solid #ffffff7c;;
+        backdrop-filter: blur(8px);
+        background: #ffffff8c;
+    }
+    & option  {
+        padding: .3rem;
+    }
+}
+selectedcontent > * {
+    transition: translate 1s ease-out, opacity 1s;
+
+    @starting-style {
+        translate: 0 100%;
+        opacity: 0;
+    }
+}

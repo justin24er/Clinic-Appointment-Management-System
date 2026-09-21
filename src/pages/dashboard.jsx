@@ -181,40 +181,48 @@ function Dashboard()  {
                     <DashboardCard style={{"--color": "#97e5ce"}} className="card a">
                         <p className="card-title">Total Appointments</p>
                         <p className="card-value">{appointments.length || 0}</p>
+                        <i class="fa-solid fa-calendar-check"></i>
                     </DashboardCard>
                     <DashboardCard style={{"--color": "#a7e1fc"}} className="card b">
                         <p className="card-title">Scheduled</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Scheduled")
                                                 .length || 0}</p>
+                        <i class="fa-solid fa-user-clock"></i>
                     </DashboardCard>
                     <DashboardCard style={{"--color": "#e7f582"}} className="card c">
                         <p className="card-title">Confirmed</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Confirmed")
                                                 .length || 0}</p>
+                        <i class="fa-solid fa-house-medical-circle-check"></i>
                     </DashboardCard>
                     <DashboardCard style={{"--color": "#f09ad9"}} className="card d">
                         <p className="card-title">Completed</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Completed")
                                                 .length || 0}</p>
+                        <i class="fa-solid fa-user-check"></i>
                     </DashboardCard>
                     <DashboardCard style={{"--color": "#e7897a"}} className="card e">
                         <p className="card-title">Cancelled</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Cancelled")
                                                 .length || 0}</p>
+                        <i class="fa-solid fa-user-xmark"></i>
                     </DashboardCard>
                 </div>
-                <div className="dash-controlls">
+                <div className="dashboard-controlls">
                     <div className="filter-controlls">
                         <span>filter <i className="fa-solid fa-filter"></i></span>
                         <Select
                             className="filter-select"
                             value={selectFilter}
                             onChange={(e) => setSelectFilter(e.target.value)}>
-                            <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                            <Button className="select-btn">
+                                <selectedContent></selectedContent>
+                                <i className="fa-solid fa-chevron-down"></i>
+                            </Button>
                             <option value="All">All</option>
                             <option value="Scheduled">Scheduled</option>
                             <option value="Confirmed">Confirmed</option>
@@ -222,7 +230,7 @@ function Dashboard()  {
                             <option value="Cancelled">Cancelled</option>
                         </Select>
                     </div>
-                    <div className="search-controll">
+                    <div className="search-controlls">
                         <span>Search by</span>
                         <Select 
                             className="search-select"
@@ -233,7 +241,6 @@ function Dashboard()  {
                             <option value="Doctor name">Doctor name</option>
                         </Select>
                         <label htmlFor="search">
-                            <span><i className="fa-solid fa-magnifying-glass"></i></span>
                             <Input
                                 className="search-input"
                                 type="text"
@@ -244,6 +251,7 @@ function Dashboard()  {
                                 value={searchName}
                                 onChange={(event) => setSearchName(event.target.value)}
                                  />
+                            <span><i className="fa-solid fa-magnifying-glass"></i></span>
                         </label>
                     </div>
                 </div>
