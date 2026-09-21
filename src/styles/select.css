@@ -26,12 +26,32 @@ select {
     & option  {
         padding: .3rem;
     }
+    &  i {
+        rotate: 0deg;
+        transition: .3s;
+        :open & {
+            rotate: 90deg;
+        }
+    }
 }
-selectedcontent > * {
+selectedContent {
     transition: translate 1s ease-out, opacity 1s;
 
     @starting-style {
         translate: 0 100%;
         opacity: 0;
     }
+}
+.search-select {
+    outline: 1px solid var(--mint);
+    border-radius: 0 50vw 50vw 0;
+    position: relative;
+}
+.search-controlls span::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    background: var(--wt);
+    left: 120px;
 }

@@ -214,7 +214,7 @@ function Dashboard()  {
                 </div>
                 <div className="dashboard-controlls">
                     <div className="filter-controlls">
-                        <span>filter <i className="fa-solid fa-filter"></i></span>
+                        <span><i className="fa-solid fa-filter"></i>filter</span>
                         <Select
                             className="filter-select"
                             value={selectFilter}
@@ -231,17 +231,19 @@ function Dashboard()  {
                         </Select>
                     </div>
                     <div className="search-controlls">
-                        <span>Search by</span>
+                        <span><i className="fa-solid fa-magnifying-glass"></i>Search by</span>
                         <Select 
                             className="search-select"
                             value={selectSearch}
                             onChange={(e) => setSelectSearch(e.target.value)}>
-                            <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                            <Button className="select-btn">
+                                <selectedContent></selectedContent>
+                                <i className="fa-solid fa-chevron-down"></i>
+                            </Button>
                             <option value="Patient name">Patient name</option>
                             <option value="Doctor name">Doctor name</option>
                         </Select>
-                        <label htmlFor="search">
-                            <Input
+                        <Input
                                 className="search-input"
                                 type="text"
                                 placeholder="Search..."
@@ -250,9 +252,7 @@ function Dashboard()  {
                                 ref={appointSearch}
                                 value={searchName}
                                 onChange={(event) => setSearchName(event.target.value)}
-                                 />
-                            <span><i className="fa-solid fa-magnifying-glass"></i></span>
-                        </label>
+                        />
                     </div>
                 </div>
             </div>
@@ -261,67 +261,71 @@ function Dashboard()  {
                 {loadingAppts && <div class="loading">loading...</div>}
                 {errorAppts ? <div class="loading-error">{errorAppts}</div> :
                     <Table className="appointments-table">
-                        <tr>
-                            <th>Edit</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Doctor</th>
-                            <th>Patient</th>
-                            <th>Reason</th>
-                            <th>Status</th>
-                            <th>Cancel</th>
-                            <th>Delete</th>
-                        </tr>
-                        {filter.map(appt => (
-                            <tr key={appt.id}>
-                                <td>
-                                    <Button onClick={() => {
-                                        setFdate(appt.date)
-                                        setFreason(appt.reason)
-                                        setFtime(appt.time)
-                                        setDr(docName(appt.doctorId))
-                                        setFstatus(appt.status)
-                                        setApptId(appt.id)
-                                        setFormContainer(true)
-                                    }} className="table-data-button">
-                                        <i className="fa-regular fa-pen-to-square"></i>
-                                    </Button>
-                               </td>
-                                <td>
-                                    {appt.date.replaceAll("-","/")}
-                                </td>
-                                <td>
-                                    {appt.time}
-                                </td>
-                                <td>
-                                    {docName(appt.doctorId) || "--not found--"}
-                                </td>
-                                <td>
-                                    {patientName(appt.patientId) || "--not found--"}
-                                </td>
-                                <td>
-                                    {appt.reason}
-                                </td>
-                                <td>
-                                    {appt.status}
-                                </td>
-                                <td>
-                                    <Button onClick={appt.status !== "Cancelled" 
-                                                        ? () => handleCancel({status: "Cancelled"},appt.id)
-                                                        : () => handleRestore({status: "Scheduled"}, appt.id)} 
-                                        className="table-data-button cancel">
-                                        {appt.status === "Cancelled" ? "restore" : "cancel"}
-                                    </Button>
-                                </td>
-                                {appt.status === "Cancelled" && <td>
-                                    <Button 
-                                        onClick={() => handleRemove(appt.id)}
-                                        class="table-data-button delete">
-                                        <i className="fa-solid fa-trash-can"></i>
-                                    </Button>
-                                </td>}
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Doctor</th>
+                                <th>Patient</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Cancel</th>
+                                <th>Delete</th>
                             </tr>
-                        ))}
+                        </thead>
+                        <tbody>
+                            {filter.map(appt => (
+                                <tr key={appt.id}>
+                                    <td>
+                                        <Button onClick={() => {
+                                            setFdate(appt.date)
+                                            setFreason(appt.reason)
+                                            setFtime(appt.time)
+                                            setDr(docName(appt.doctorId))
+                                            setFstatus(appt.status)
+                                            setApptId(appt.id)
+                                            setFormContainer(true)
+                                        }} className="table-data-button">
+                                            <i className="fa-regular fa-pen-to-square"></i>
+                                        </Button>
+                                   </td>
+                                    <td>
+                                        {appt.date.replaceAll("-","/")}
+                                    </td>
+                                    <td>
+                                        {appt.time}
+                                    </td>
+                                    <td>
+                                        {docName(appt.doctorId) || "--not found--"}
+                                    </td>
+                                    <td>
+                                        {patientName(appt.patientId) || "--not found--"}
+                                    </td>
+                                    <td>
+                                        {appt.reason}
+                                    </td>
+                                    <td>
+                                        {appt.status}
+                                    </td>
+                                    <td>
+                                        <Button onClick={appt.status !== "Cancelled" 
+                                                            ? () => handleCancel({status: "Cancelled"},appt.id)
+                                                            : () => handleRestore({status: "Scheduled"}, appt.id)} 
+                                            className="table-data-button cancel">
+                                            {appt.status === "Cancelled" ? "restore" : "cancel"}
+                                        </Button>
+                                    </td>
+                                    {appt.status === "Cancelled" && <td>
+                                        <Button 
+                                            onClick={() => handleRemove(appt.id)}
+                                            class="table-data-button delete">
+                                            <i className="fa-solid fa-trash-can"></i>
+                                        </Button>
+                                    </td>}
+                                </tr>
+                            ))}
+                        </tbody>
                     </Table>
                     }
             </div>
