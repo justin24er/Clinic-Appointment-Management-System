@@ -13,6 +13,7 @@ span.card {
     color: var(--color);
     outline: 1px dashed var(--color);
     outline-offset: -3px;
+    position: relative;
 }
 .card p:nth-child(1) {
     font-weight: var(--fw-600);
@@ -21,6 +22,13 @@ span.card {
 .card p:nth-child(2) {
     font-size: var(--fs-700);
     font-weight: var(--fw-600);
+}
+span.card > i {
+    position: absolute;
+    right: -5px;
+    font-size: 2.8rem;
+    bottom: -5px;
+    rotate: -20deg;
 }
 .a {
     background: var(--total-card);

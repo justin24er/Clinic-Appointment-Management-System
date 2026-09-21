@@ -26,3 +26,26 @@ section.dashboard-container {
         }
     }
 }
+.dashboard-controlls {
+    display: flex;
+    gap: 2rem;
+    height: 2.5rem;
+    align-items: center;
+}
+.dashboard-controlls .filter-controlls {
+    display: grid;
+    height: 100%;
+    width: 200px;
+    font-size: var(--fs-500);
+    background: var(--teal);
+    color: var(--mint);
+    overflow: hidden;
+    grid-template-columns: auto 60%;
+    border-radius: 50vw 0 0 50vw;
+}
+.filter-controlls span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+}
