@@ -1,0 +1,40 @@
+span.card {
+    text-align: center;
+    text-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    width: 250px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
+    color: var(--color);
+    outline: 1px dashed var(--color);
+    outline-offset: -3px;
+}
+.card p:nth-child(1) {
+    font-weight: var(--fw-600);
+    font-size: var(--fs-600);
+}
+.card p:nth-child(2) {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-600);
+}
+.a {
+    background: var(--total-card);
+
+}
+.b {
+    background: var(--scheduled-card);
+}
+.c {
+    background: var(--confirmed-card);
+}
+.d {
+    background: var(--completed-card);
+}
+.e {
+    background: var(--cancelled-card);
+}
