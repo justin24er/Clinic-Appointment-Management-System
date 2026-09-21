@@ -25,6 +25,8 @@ select {
     }
     & option  {
         padding: .3rem;
+        outline: none;
+        border: none;
     }
     &  i {
         rotate: 0deg;
@@ -34,14 +36,32 @@ select {
         }
     }
 }
+
+/* Transition with @starting-style as an Initial page load animation for the option values */
 selectedContent {
-    transition: translate 1s ease-out, opacity 1s;
+    transition: translate .5s ease-out, opacity .5s;
 
     @starting-style {
         translate: 0 100%;
         opacity: 0;
     }
 }
+
+/* Animation keyframes for option selected display on the select box */
+selectedContent.pop {
+    animation: riseIn .3s ease-out
+}
+@keyframes riseIn {
+    from {
+        translate: 0 100%;
+        opacity: 0;
+    }
+    to {
+        translate: 0 0;
+        opacity: 1;
+    }
+}
+
 .search-select {
     outline: 1px solid var(--mint);
     border-radius: 0 50vw 50vw 0;
