@@ -27,6 +27,8 @@ function Dashboard()  {
     const [searchName, setSearchName] = useState("")
     const [selectSearch, setSelectSearch] = useState("Patient name")
     const [selectFilter, setSelectFilter] = useState("All")
+    const [isFilterPop,  setIsFilterPop] = useState(false)
+    const [isSearchPop, setIsSearchPop] = useState(false)
 
     const [fdate, setFdate] = useState("")
     const [ftime, setFtime] = useState("")
@@ -174,6 +176,21 @@ function Dashboard()  {
         
     }
 
+    function handleSelectFilter(event) {
+        setSelectFilter(event.target.value)
+        setIsFilterPop(false)
+        requestAnimationFrame(() => {
+            setIsFilterPop(true)
+        })
+    }
+
+    function handleSelectSearch(event) {
+        setSelectSearch(event.target.value)
+        setIsSearchPop(false)
+        requestAnimationFrame(() => {
+            setIsSearchPop(true)
+        })
+    }
     return (
         <section className="dashboard-container">
             <div className="dashboard-header">
@@ -218,9 +235,9 @@ function Dashboard()  {
                         <Select
                             className="filter-select"
                             value={selectFilter}
-                            onChange={(e) => setSelectFilter(e.target.value)}>
+                            onChange={handleSelectFilter}>
                             <Button className="select-btn">
-                                <selectedContent></selectedContent>
+                                <selectedContent className={isFilterPop && "pop"}></selectedContent>
                                 <i className="fa-solid fa-chevron-down"></i>
                             </Button>
                             <option value="All">All</option>
@@ -235,9 +252,9 @@ function Dashboard()  {
                         <Select 
                             className="search-select"
                             value={selectSearch}
-                            onChange={(e) => setSelectSearch(e.target.value)}>
+                            onChange={handleSelectSearch}>
                             <Button className="select-btn">
-                                <selectedContent></selectedContent>
+                                <selectedContent className={isSearchPop && "pop"}></selectedContent>
                                 <i className="fa-solid fa-chevron-down"></i>
                             </Button>
                             <option value="Patient name">Patient name</option>
