@@ -13,11 +13,11 @@
     --mint: #E1E9F4;
     --black-charcoal: #444242;
 
-    --total-card: #018081;
-    --scheduled-card: #018081;
-    --confirmed-card: #018081;
-    --completed-card: #018081;
-    --cancelled-card: #018081;
+    --total-card: var(--teal);
+    --scheduled-card: #3c74a1b0;
+    --confirmed-card: #9da714cc;
+    --completed-card: #80296ab2;
+    --cancelled-card: #7e2c1dc4;
 
     --fw-200: 200;
     --fw-400: 400;
@@ -27,7 +27,7 @@
 
     --fs-400: 12px;
     --fs-500: 14px;
-    --fs-600: 18px; 
+    --fs-600: 16px; 
     --fs-700: 1.8rem;
 }
 body {

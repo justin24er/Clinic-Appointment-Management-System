@@ -17,6 +17,10 @@ div.main-container {
     color: var(--black-charcoal);
     text-align: center;
 }
+.primary-heading span { 
+    -webkit-text-stroke: 1px var(--black-charcoal);
+    -webkit-text-fill-color: transparent;
+}
 main {
     height: 100%;
     width: 100%;

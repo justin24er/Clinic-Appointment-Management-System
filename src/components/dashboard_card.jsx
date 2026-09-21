@@ -2,9 +2,10 @@ import '../styles/dashboard_card.css'
 
 function DashboardCard({
     className,
+    style,
     children
 }) {
-    return <span className={className}>
+    return <span style={style} className={className}>
         {children}
     </span>
 }

@@ -178,29 +178,29 @@ function Dashboard()  {
         <section className="dashboard-container">
             <div className="dashboard-header">
                 <div className="dash-cards">
-                    <DashboardCard className="card a">
+                    <DashboardCard style={{"--color": "#97e5ce"}} className="card a">
                         <p className="card-title">Total Appointments</p>
                         <p className="card-value">{appointments.length || 0}</p>
                     </DashboardCard>
-                    <DashboardCard className="card b">
+                    <DashboardCard style={{"--color": "#a7e1fc"}} className="card b">
                         <p className="card-title">Scheduled</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Scheduled")
                                                 .length || 0}</p>
                     </DashboardCard>
-                    <DashboardCard className="card c">
+                    <DashboardCard style={{"--color": "#e7f582"}} className="card c">
                         <p className="card-title">Confirmed</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Confirmed")
                                                 .length || 0}</p>
                     </DashboardCard>
-                    <DashboardCard className="card d">
+                    <DashboardCard style={{"--color": "#f09ad9"}} className="card d">
                         <p className="card-title">Completed</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Completed")
                                                 .length || 0}</p>
                     </DashboardCard>
-                    <DashboardCard className="card e">
+                    <DashboardCard style={{"--color": "#e7897a"}} className="card e">
                         <p className="card-title">Cancelled</p>
                         <p className="card-value">{appointments
                                                 .filter(appt => appt.status === "Cancelled")

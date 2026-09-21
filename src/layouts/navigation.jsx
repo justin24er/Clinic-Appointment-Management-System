@@ -12,7 +12,7 @@ function Navigation({children})  {
                 {SUCCESS && <span className="notification-success">{message}</span> }
                 {ERROR && <span className="notification-error">{message}</span>}
             </div>
-            <h2 className="primary-heading">Clinic Appointment Management System</h2>
+            <h2 className="primary-heading">Clinic <span>Appointment</span> Management System</h2>
             <main>
                 <nav className="main-navigation">
                     <NavLink to='/' className={({isActive}) => isActive && "active"}>dashboard</NavLink>
