@@ -6,6 +6,7 @@ import Form from '../components/form'
 import Input from "../components/ui/input"
 import { useState, useContext, useEffect } from 'react'
 import { notification } from '../contexts/notifyContext'
+import '../styles/drs_pats.css'
 
 function Drs_patients() {
     const [dname, setDname] = useState("")
