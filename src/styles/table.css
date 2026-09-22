@@ -1,4 +1,4 @@
-table.appointments-table {
+table {
     width: 100%;
     border-collapse: collapse;
 } 
@@ -16,4 +16,12 @@ th:nth-child(1) {border-top-left-radius: 10px}
 th:nth-child(9) {border-top-right-radius: 10px}
 td {
     border: 1px solid var(--teal);
+}
+table.patients-table th,
+table.doctors-table th {
+    border-radius: 0;
+}
+table.appointments-table thead tr {
+    position: sticky;
+    top: 0;
 }

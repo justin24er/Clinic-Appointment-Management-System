@@ -1,0 +1,23 @@
+button.table-data-button {
+    font-size: var(--fs-400);
+    padding: .2rem;
+    color: var(--teal);
+    background: var(--wt);
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #018181a1;
+    cursor: pointer;
+}
+button.cancel {
+    padding: .1rem .3rem;
+    font-family: inherit;
+}
+button.delete-btn {
+    padding: .2rem;
+    border-radius: 5px;
+    border: 1px solid var(--cancelled-card);
+    background: var(--wt);
+    font-size: var(--fs-400);
+    color: var(--cancelled-card);
+    cursor: pointer; 
+}
