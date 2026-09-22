@@ -21,3 +21,42 @@ button.delete-btn {
     color: var(--cancelled-card);
     cursor: pointer; 
 }
+button.close-form {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 12px;
+    border: 1px solid #ffffff77;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    width: 22px;
+    aspect-ratio: 1;
+    outline: none;
+    background: none;
+    color: var(--wt);
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 0 10px #ffffff8c;
+}
+button.close-form:hover {
+    color: #ffffffc2;
+    border-color: #ffffff59;
+}
+button.confirm-edit-btn {
+    grid-column: 1/3;
+    padding-block: .5rem;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ffffff44;
+    font-family: inherit;
+    letter-spacing: 2px;
+    color: var(--mint);
+    background: var(--teal);
+    border-radius: 50px;
+    corner-shape: squircle;
+    transition: .3s;
+}
+button.confirm-edit-btn:hover {
+    background: #026b6b;
+}
