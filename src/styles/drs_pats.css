@@ -1,0 +1,15 @@
+section.list-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.doctors-list,
+.patients-list {
+    display: flex;
+    flex-direction: column;
+}
+.list-header {
+    background: var(--black-charcoal);
+    height: 2rem;
+}
+
