@@ -75,3 +75,8 @@ selectedContent.pop {
     background: var(--wt);
     left: 120px;
 }
+.input-wrapper select {
+    padding-block: .4rem;
+    border-radius: 20px;
+    box-shadow: inset 0 0 6px #046363;
+}

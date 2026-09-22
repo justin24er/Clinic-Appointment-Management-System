@@ -29,6 +29,8 @@ function Dashboard()  {
     const [selectFilter, setSelectFilter] = useState("All")
     const [isFilterPop,  setIsFilterPop] = useState(false)
     const [isSearchPop, setIsSearchPop] = useState(false)
+    const [isDr, setIsDr] = useState(false)
+    const [isStatus, setIsStatus] = useState(false)
 
     const [fdate, setFdate] = useState("")
     const [ftime, setFtime] = useState("")
@@ -174,6 +176,18 @@ function Dashboard()  {
             }
         }
         
+    }
+
+    function handleDrSelect(event) {
+        setDr(event.target.value)
+        setIsDr(false)
+        requestAnimationFrame(() => {setIsDr(true)})
+    }
+
+    function handleStatusSelect(event) {
+        setFstatus(event.target.value)
+        setIsStatus(false)
+        requestAnimationFrame(() => {setIsStatus(true)})
     }
 
     function handleSelectFilter(event) {
@@ -349,6 +363,23 @@ function Dashboard()  {
                 }
             </div>
             <div style={{display: formContainer ? "flex" : "none"}} className="edit-form-section">
+                <svg height="0" width="0" style={{position: "absolute"}}>
+                    <filter id="lg-effect">
+                        <feTurbulence 
+                            type="fractalNoise"
+                            baseFrequency=".2"
+                            numOctaves="2"
+                            result="noise"
+                        />
+                        <feDisplacementMap
+                            in="SourceGraphic"
+                            in2="noise"
+                            scale="50"
+                            xChannelSelector="R"
+                            yChannelSelector="G"
+                        />
+                    </filter>
+                </svg>
                 <div className="edit-form-wrapper">
                     <Button onClick={() => setFormContainer(false)} className="close-form">
                         <i className="fa-solid fa-xmark"></i>
@@ -392,8 +423,11 @@ function Dashboard()  {
                             <Select 
                                 className="edit-form-select"
                                 value={dr}
-                                onChange={e => setDr(e.target.value)}>
-                                    <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                                onChange={handleDrSelect}>
+                                    <Button className="select-btn">
+                                        <selectedContent className={isDr && "pop"}></selectedContent>
+                                        <i className="fa-solid fa-chevron-down"></i>
+                                    </Button>
                                     {doctors.map((doc,index) => (
                                         <option key={index} value={doc.name}>{doc.name}</option>
                                     ))}
@@ -404,8 +438,11 @@ function Dashboard()  {
                              <Select
                                 className="status-form-select"
                                 value={fstatus}
-                                onChange={(e) => setFstatus(e.target.value)}>
-                                <Button className="select-btn"><i className="fa-solid fa-chevron-down"></i></Button>
+                                onChange={handleStatusSelect}>
+                                <Button className="select-btn">
+                                    <selectedContent className={isStatus && "pop"}></selectedContent>
+                                    <i className="fa-solid fa-chevron-down"></i>
+                                </Button>
                                 <option value="Scheduled">Scheduled</option>
                                 <option value="Confirmed">Confirmed</option>
                                 <option value="Completed">Completed</option>

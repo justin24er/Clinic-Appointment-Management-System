@@ -7,7 +7,6 @@ div.main-container {
     align-items: center;
     padding-block-start: 2rem;
     padding-inline: 1rem;
-    position: relative;
 }
 .page-notification {
     position: absolute;

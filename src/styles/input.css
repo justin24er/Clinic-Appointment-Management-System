@@ -1,4 +1,4 @@
-.search-input {
+input {
     border: none;
     outline: none;
     width: 100%;
@@ -7,4 +7,9 @@
     color: var(--teal);
     font-family: inherit;
     font-size: inherit;
+}
+.input-wrapper input {
+    padding-block: .3rem;
+    border-radius: 20px;
+    box-shadow: inset 0 0 6px #046363;
 }
