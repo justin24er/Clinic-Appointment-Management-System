@@ -156,7 +156,7 @@ function Drs_patients() {
                     onClick={() => setDocForm(true)}>add</Button>
             </span>
             {loadingDocs && <div className="loading">loading...</div>}
-            {errorDocs ? <div className="loading-error">{errorDocs}</div> :
+            {errorDocs ? <div className="loading-error">{errorDocs}&nbsp;&nbsp;:(</div> :
             <Table className="doctors-table">
                 <tr>
                     <th>Name</th>
@@ -191,7 +191,7 @@ function Drs_patients() {
                     onClick={() => setPatForm(true)}>add</Button>
             </span>
             {loadingPatients && <div className="loading">loading...</div>}
-            {errorPatients ? <div className="loading-error">{errorPatients}</div> :
+            {errorPatients ? <div className="loading-error">{errorPatients}&nbsp;&nbsp;:(</div> :
             <Table className="patients-table">
                     <tr>
                         <th>Name</th>
