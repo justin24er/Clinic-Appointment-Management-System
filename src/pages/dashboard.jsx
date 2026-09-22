@@ -51,7 +51,7 @@ function Dashboard()  {
             setFilter(appointments.filter(appt => appt.status === selectFilter))
         }
     },[selectFilter,appointments])
-
+    
     useEffect(() => {
         appointSearch.current.focus()
         const trimed_name = searchName.trim().toLowerCase();
@@ -275,76 +275,77 @@ function Dashboard()  {
             </div>
 
             <div className="dashboard-body">
-                {loadingAppts && <div class="loading">loading...</div>}
-                {errorAppts ? <div class="loading-error">{errorAppts}</div> :
-                    <Table className="appointments-table">
-                        <thead>
-                            <tr>
-                                <th>Edit</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Doctor</th>
-                                <th>Patient</th>
-                                <th>Reason</th>
-                                <th>Status</th>
-                                <th>Cancel</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filter.map(appt => (
-                                <tr key={appt.id}>
-                                    <td>
-                                        <Button onClick={() => {
-                                            setFdate(appt.date)
-                                            setFreason(appt.reason)
-                                            setFtime(appt.time)
-                                            setDr(docName(appt.doctorId))
-                                            setFstatus(appt.status)
-                                            setApptId(appt.id)
-                                            setFormContainer(true)
-                                        }} className="table-data-button">
-                                            <i className="fa-regular fa-pen-to-square"></i>
-                                        </Button>
-                                   </td>
-                                    <td>
-                                        {appt.date.replaceAll("-","/")}
-                                    </td>
-                                    <td>
-                                        {appt.time}
-                                    </td>
-                                    <td>
-                                        {docName(appt.doctorId) || "--not found--"}
-                                    </td>
-                                    <td>
-                                        {patientName(appt.patientId) || "--not found--"}
-                                    </td>
-                                    <td>
-                                        {appt.reason}
-                                    </td>
-                                    <td>
-                                        {appt.status}
-                                    </td>
-                                    <td>
-                                        <Button onClick={appt.status !== "Cancelled" 
-                                                            ? () => handleCancel({status: "Cancelled"},appt.id)
-                                                            : () => handleRestore({status: "Scheduled"}, appt.id)} 
-                                            className="table-data-button cancel">
-                                            {appt.status === "Cancelled" ? "restore" : "cancel"}
-                                        </Button>
-                                    </td>
-                                    {appt.status === "Cancelled" && <td>
-                                        <Button 
-                                            onClick={() => handleRemove(appt.id)}
-                                            class="table-data-button delete">
-                                            <i className="fa-solid fa-trash-can"></i>
-                                        </Button>
-                                    </td>}
+                {loadingAppts ? <div className="loading">loading...</div> : (
+                    errorAppts ? <div className="loading-error">{errorAppts}&nbsp;&nbsp;:(</div> :
+                        <Table className="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>Edit</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Doctor</th>
+                                    <th>Patient</th>
+                                    <th>Reason</th>
+                                    <th>Status</th>
+                                    <th>Cancel</th>
+                                    <th>Delete</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    }
+                            </thead>
+                            <tbody>
+                                {filter.map(appt => (
+                                    <tr key={appt.id}>
+                                        <td>
+                                            <Button onClick={() => {
+                                                setFdate(appt.date)
+                                                setFreason(appt.reason)
+                                                setFtime(appt.time)
+                                                setDr(docName(appt.doctorId))
+                                                setFstatus(appt.status)
+                                                setApptId(appt.id)
+                                                setFormContainer(true)
+                                            }} className="table-data-button">
+                                                <i className="fa-regular fa-pen-to-square"></i>
+                                            </Button>
+                                       </td>
+                                        <td>
+                                            {appt.date.replaceAll("-","/")}
+                                        </td>
+                                        <td>
+                                            {appt.time}
+                                        </td>
+                                        <td>
+                                            {docName(appt.doctorId) || "--not found--"}
+                                        </td>
+                                        <td>
+                                            {patientName(appt.patientId) || "--not found--"}
+                                        </td>
+                                        <td>
+                                            {appt.reason}
+                                        </td>
+                                        <td>
+                                            {appt.status}
+                                        </td>
+                                        <td>
+                                            <Button onClick={appt.status !== "Cancelled" 
+                                                                ? () => handleCancel({status: "Cancelled"},appt.id)
+                                                                : () => handleRestore({status: "Scheduled"}, appt.id)} 
+                                                className="table-data-button cancel">
+                                                {appt.status === "Cancelled" ? "restore" : "cancel"}
+                                            </Button>
+                                        </td>
+                                        {appt.status === "Cancelled" && <td>
+                                            <Button 
+                                                onClick={() => handleRemove(appt.id)}
+                                                className="delete-btn">
+                                                <i className="fa-solid fa-trash-can"></i>
+                                            </Button>
+                                        </td>}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                        )
+                }
             </div>
             <div style={{display: formContainer ? "flex" : "none"}} className="edit-form-section">
                 <div className="edit-form-wrapper">

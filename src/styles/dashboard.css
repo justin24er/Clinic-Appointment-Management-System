@@ -56,7 +56,7 @@ section.dashboard-container {
     padding-inline: 1rem;
 }
 .dashboard-controlls .search-controlls {
-    width: 43%;
+    width: 50%;
     display: grid;
     grid-template-columns: 120px 150px auto;
     height: 2.5rem;
@@ -65,7 +65,7 @@ section.dashboard-container {
     border-radius: 50vw;
     position: relative;
     overflow: hidden;
-    @media screen and (max-width: 870px) {
+    @media screen and (max-width: 1080px) {
         width: 100%;
     }
 }
@@ -77,13 +77,24 @@ section.dashboard-container {
 }
 
 .dashboard-body {
-    width: 100%;
+    width: 105%;
     height: 60dvh;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
-    flex-direction: column;
+    padding-inline: .2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+}
+.dashboard-body::-webkit-scrollbar {
+    width: .5rem;
+}
+.dashboard-body::-webkit-scrollbar-thumb {
+    background: var(--teal);
+    border-radius: 50vw;
 }
 .dashboard-body .loading {
     color: var(--mint);
@@ -93,3 +104,10 @@ section.dashboard-container {
     font-size: var(--fs-500);
     color: var(--cancelled-card);
 }
+/* .dashboard-body .loading,
+.dashboard-body .loading-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%) translateY(-50%)
+} */
