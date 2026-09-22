@@ -191,6 +191,7 @@ function Dashboard()  {
             setIsSearchPop(true)
         })
     }
+
     return (
         <section className="dashboard-container">
             <div className="dashboard-header">

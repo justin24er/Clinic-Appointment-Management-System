@@ -1,11 +1,12 @@
 div.main-container {
     height: 100dvh;
-    width: 90dvw;
+    width: 93dvw;
     display: flex;
     flex-direction: column;
     gap: 3rem;
     align-items: center;
     padding-block-start: 2rem;
+    padding-inline: 1rem;
     position: relative;
 }
 .page-notification {

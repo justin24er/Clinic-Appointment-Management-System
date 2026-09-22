@@ -21,6 +21,14 @@ table.patients-table th,
 table.doctors-table th {
     border-radius: 0;
 }
+table.patients-table,
+table.doctors-table {
+    @media screen and (max-width: 850px) {
+        font-size: var(--fs-400);
+        padding-inline: .2rem;
+    }
+
+}
 table.appointments-table thead tr {
     position: sticky;
     top: 0;
