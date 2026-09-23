@@ -363,7 +363,7 @@ function Dashboard()  {
                 }
             </div>
             <div style={{display: formContainer ? "flex" : "none"}} className="edit-form-section">
-                <svg height="0" width="0" style={{position: "absolute"}}>
+                <svg height="0" width="0" style={{position: "absolute", pointerEvents: "none"}}>
                     <filter id="lg-effect">
                         <feTurbulence 
                             type="fractalNoise"
@@ -449,7 +449,7 @@ function Dashboard()  {
                                 <option value="Cancelled">Cancelled</option>
                             </Select>
                         </div>
-                        <Button type="submit" className="confirm-edit-btn">CONFIRM</Button>
+                        <Button type="submit" className="confirm-btn">CONFIRM</Button>
                         {formSuccess && <div className="status form-success">{formSuccess}</div>}
                         {formError && <div className="status form-error">{formError}</div>}
                     </Form>

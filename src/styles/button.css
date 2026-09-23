@@ -50,7 +50,7 @@ button.close-form:hover {
     color: #ffffffc2;
     border-color: #ffffff59;
 }
-button.confirm-edit-btn {
+button.confirm-btn {
     grid-column: 1/3;
     padding-block: .5rem;
     cursor: pointer;
@@ -64,7 +64,7 @@ button.confirm-edit-btn {
     corner-shape: squircle;
     transition: .3s;
 }
-button.confirm-edit-btn:hover {
+button.confirm-btn:hover {
     background: #026b6b;
 }
 button.addPatient-btn,
