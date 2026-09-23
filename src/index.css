@@ -32,7 +32,7 @@
     --fs-700: 1.8rem;
 }
 body {
-    font-family: var(--ff-primary);
+    font-family: var(--ff-primary),Trebuchet MS;
     font-size: var(--fs-500);
     background: var(--mint);
     display: flex;
