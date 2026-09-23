@@ -156,32 +156,33 @@ function Drs_patients() {
                     className="addDoctor-btn"
                     onClick={() => setDocForm(true)}>add</Button>
             </span>
-            {loadingDocs && <div className="loading">loading...</div>}
-            {errorDocs ? <div className="loading-error">{errorDocs}&nbsp;&nbsp;:(</div> :
-            <Table className="doctors-table">
-                <tr>
-                    <th>Name</th>
-                    <th>Specialty</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Delete</th>
-                </tr>
-                {doctors.map(doc => (
-                    <tr key={doc.id}>
-                        <td>{doc.name}</td>
-                        <td>{doc.specialty}</td>
-                        <td>{doc.phone}</td>
-                        <td>{doc.email}</td>
-                        <td>
-                            <Button 
-                                className="delete-btn"
-                                onClick={() => doctorDelete(doc.id)}>
-                                    <i className="fa-solid fa-trash-can"></i>
-                            </Button>
-                        </td>
+            {loadingDocs ? <div className="loading">loading...</div> : (
+                errorDocs ? <div className="loading-error">{errorDocs}&nbsp;&nbsp;:(</div> :
+                <Table className="doctors-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Specialty</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Delete</th>
                     </tr>
-                ))}
-            </Table>}
+                    {doctors.map(doc => (
+                        <tr key={doc.id}>
+                            <td>{doc.name}</td>
+                            <td>{doc.specialty}</td>
+                            <td>{doc.phone}</td>
+                            <td>{doc.email}</td>
+                            <td>
+                                <Button 
+                                    className="delete-btn"
+                                    onClick={() => doctorDelete(doc.id)}>
+                                        <i className="fa-solid fa-trash-can"></i>
+                                </Button>
+                            </td>
+                        </tr>
+                    ))}
+                </Table>)
+            }
         </div>
 
         <div className="patients-list">
@@ -191,34 +192,35 @@ function Drs_patients() {
                     className="addPatient-btn"
                     onClick={() => setPatForm(true)}>add</Button>
             </span>
-            {loadingPatients && <div className="loading">loading...</div>}
-            {errorPatients ? <div className="loading-error">{errorPatients}&nbsp;&nbsp;:(</div> :
-            <Table className="patients-table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Phone</th>
-                        <th>address</th>
-                        <th>Delete</th>
-                    </tr>
-                    {patients.map(pat => (
-                        <tr key={pat.id}>
-                            <td>{pat.name}</td>
-                            <td>{pat.age}</td>
-                            <td>{pat.gender}</td>
-                            <td>{pat.phone}</td>
-                            <td>{pat.address}</td>
-                            <td>
-                                <Button
-                                    className="delete-btn"
-                                    onClick={() => patientDelete(pat.id)}>
-                                        <i className="fa-solid fa-trash-can"></i>
-                                </Button>
-                            </td>
+            {loadingPatients ? <div className="loading">loading...</div> : (
+                errorPatients ? <div className="loading-error">{errorPatients}&nbsp;&nbsp;:(</div> :
+                <Table className="patients-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>address</th>
+                            <th>Delete</th>
                         </tr>
-                    ))}
-            </Table>}
+                        {patients.map(pat => (
+                            <tr key={pat.id}>
+                                <td>{pat.name}</td>
+                                <td>{pat.age}</td>
+                                <td>{pat.gender}</td>
+                                <td>{pat.phone}</td>
+                                <td>{pat.address}</td>
+                                <td>
+                                    <Button
+                                        className="delete-btn"
+                                        onClick={() => patientDelete(pat.id)}>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                </Table> )
+                }
         </div>
 
         <div style={{display: (docForm || patForm) ? "flex" : "none"}} className="add-form-section">
