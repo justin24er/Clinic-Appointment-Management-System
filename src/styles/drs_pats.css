@@ -49,3 +49,44 @@ section.list-wrapper {
     position: sticky;
     top: 2.5rem; 
 }
+.add-form-section {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0000009c;
+}
+.add-form-section .add-doctor-form-wrapper,
+.add-form-section .add-patient-form-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%) translateY(-50%);
+     display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 500px;
+    min-height: 300px;
+    padding-block: 1.5rem;
+    border-radius: 20px;
+    background: #31b4b42a;
+    color: var(--wt);
+    box-shadow: inset 0 1px 0 #ffffff41,
+                inset 0 -1px 0 #ffffff2a;
+    backdrop-filter: blur(1px) url(#lg-effect) ;
+    & .form-title {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-600);
+    width: 100%;
+    text-align: center;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #ffffff49; 
+    }
+}
+

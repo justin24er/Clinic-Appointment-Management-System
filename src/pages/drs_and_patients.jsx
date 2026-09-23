@@ -232,12 +232,27 @@ function Drs_patients() {
         </div>
 
         <div style={{display: (docForm || patForm) ? "flex" : "none"}} className="add-form-section">
+            <svg height="" width="" style={{position: "absolute", pointerEvents: "none"}}>
+                <filter id="lg-effect">
+                    <feTurbulence 
+                        type="fractalNoise"
+                        baseFrequency=".2"
+                        numOctaves="2"
+                        result="noise"/>
+                    <feDisplacementMap
+                        in="SourceGraphic"
+                        in2="noise"
+                        scale="40"
+                        xChannelSelector="R"
+                        yChannelSelector="G" />
+                </filter>
+            </svg>
             <div style={{display: docForm ? "flex" : "none"}} className="add-doctor-form-wrapper">
                 <Button onClick={() => setDocForm(false)} className="close-form">
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Doctor</div>
-                <Form onSubmit={handleDoctorAdd}>
+                <Form className="add-form" onSubmit={handleDoctorAdd}>
                     <Input 
                         type="text"
                         value={dname}
@@ -268,7 +283,7 @@ function Drs_patients() {
                         autoComplete="email"  
                         onChange={e => setDemail(e.target.value)}
                         />
-                    <Button type="submit" >CONFIRM</Button>
+                    <Button className="confirm-btn" type="submit" >CONFIRM</Button>
                     {formSuccess && <div className="status form-success">{formSuccess}</div>}
                     {formError && <div className="status form-error">{formError}</div>}
                 </Form>
@@ -278,7 +293,7 @@ function Drs_patients() {
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Patient</div>
-                <Form onSubmit={handlePatientAdd}>
+                <Form className="add-form" onSubmit={handlePatientAdd}>
                     <Input 
                         type="text"
                         placeholder="Name"
@@ -327,7 +342,7 @@ function Drs_patients() {
                             />
                             <span>Female</span>
                     </label>
-                    <Button type="submit">CONFIRM</Button>
+                    <Button className="confirm-btn" type="submit">CONFIRM</Button>
                     {formSuccess && <div className="status form-success">{formSuccess}</div>}
                     {formError && <div className="status form-error">{formError}</div>}
                 </Form>
