@@ -10,6 +10,7 @@ section.list-wrapper {
     align-items: center;
     height: 60dvh;
     overflow-y: scroll;
+    overflow-x: hidden;
     position: relative;
     &::-webkit-scrollbar {
         background: transparent;
