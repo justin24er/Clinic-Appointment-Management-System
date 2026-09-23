@@ -8,20 +8,44 @@ section.list-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 60dvh;
+    overflow-y: scroll;
+    position: relative;
+    &::-webkit-scrollbar {
+        background: transparent;
+        width: .2rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--teal);
+        border-radius: 50vw;
+    }
+    padding-inline: .2rem;
 }
 .list-header {
     height: 2.5rem;
-    background: var(--wt);
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding-inline: .4rem;
     align-items: center;
-    background: 
+    position: sticky;
+    top: 0;
+    background: var(--mint);
+    padding-block: 1rem;
+   /*  background-image: repeating-linear-gradient(145deg, #0181812a 0 1px, transparent 1px 30px),
+                      repeating-linear-gradient(45deg, #01818131 0 1px, transparent 1px 30px); */
+   /*  background-color: var(--wt);
+    background-image: repeating-conic-gradient(#000 0 90deg, #fff 90deg 180deg);
+    background-size: 2.5rem 2.5rem; */
 }
 .list-header > span {
     font-weight: var(--fw-600);
     color: var(--teal);
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+.doctors-list thead,
+.patients-list thead {
+    position: sticky;
+    top: 2.5rem; 
 }

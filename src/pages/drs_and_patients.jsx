@@ -159,28 +159,32 @@ function Drs_patients() {
             {loadingDocs ? <div className="loading">loading...</div> : (
                 errorDocs ? <div className="loading-error">{errorDocs}&nbsp;&nbsp;:(</div> :
                 <Table className="doctors-table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Specialty</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Delete</th>
-                    </tr>
-                    {doctors.map(doc => (
-                        <tr key={doc.id}>
-                            <td>{doc.name}</td>
-                            <td>{doc.specialty}</td>
-                            <td>{doc.phone}</td>
-                            <td>{doc.email}</td>
-                            <td>
-                                <Button 
-                                    className="delete-btn"
-                                    onClick={() => doctorDelete(doc.id)}>
-                                        <i className="fa-solid fa-trash-can"></i>
-                                </Button>
-                            </td>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialty</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Delete</th>
                         </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {doctors.map(doc => (
+                            <tr key={doc.id}>
+                                <td>{doc.name}</td>
+                                <td>{doc.specialty}</td>
+                                <td>{doc.phone}</td>
+                                <td>{doc.email}</td>
+                                <td>
+                                    <Button 
+                                        className="delete-btn"
+                                        onClick={() => doctorDelete(doc.id)}>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </Table>)
             }
         </div>
@@ -195,6 +199,7 @@ function Drs_patients() {
             {loadingPatients ? <div className="loading">loading...</div> : (
                 errorPatients ? <div className="loading-error">{errorPatients}&nbsp;&nbsp;:(</div> :
                 <Table className="patients-table">
+                    <thead>
                         <tr>
                             <th>Name</th>
                             <th>Age</th>
@@ -203,6 +208,8 @@ function Drs_patients() {
                             <th>address</th>
                             <th>Delete</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         {patients.map(pat => (
                             <tr key={pat.id}>
                                 <td>{pat.name}</td>
@@ -219,6 +226,7 @@ function Drs_patients() {
                                 </td>
                             </tr>
                         ))}
+                    </tbody>
                 </Table> )
                 }
         </div>
