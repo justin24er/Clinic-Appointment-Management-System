@@ -6,6 +6,12 @@ form.add-form {
     grid-template-columns: 35% 1fr;
     gap: 1rem;
 }
+form.add-doc-form {
+    gap: 2rem;
+}
+form.add-patient-form {
+    grid-template-columns: repeat(2, 1fr)
+}
 .input-wrapper {
     display: flex;
     flex-direction: column;

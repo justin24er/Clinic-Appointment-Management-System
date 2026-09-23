@@ -63,6 +63,14 @@
       "gender": "Female",
       "address": "Nairobi,street001",
       "id": "y2IH7kduNCc"
+    },
+    {
+      "name": "Glory Patrick James",
+      "age": "24",
+      "phone": "+25577989928",
+      "gender": "Female",
+      "address": "p.James28@gmail.coml",
+      "id": "Fss3A_dmiSM"
     }
   ],
   "doctors": [
@@ -128,6 +136,20 @@
       "phone": "0601117779",
       "email": "nr.khadij@clinic.co.tz",
       "id": "sC5osP84jss"
+    },
+    {
+      "name": "Dr.John",
+      "specialty": "Cardiac nerves",
+      "phone": "0673398029",
+      "email": "dr.john@clinic.co.tz",
+      "id": "lhrE6_2kvWw"
+    },
+    {
+      "name": "Dr.Nestory Katungwa",
+      "specialty": "Reproduction System",
+      "phone": "+25488982000",
+      "email": "nestory_dr@gmail.com",
+      "id": "eV9DD_RdPFo"
     }
   ],
   "appointments": [

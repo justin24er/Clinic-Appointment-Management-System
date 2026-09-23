@@ -8,8 +8,19 @@ input {
     font-family: inherit;
     font-size: inherit;
 }
-.input-wrapper input {
+.input-wrapper input,
+.add-form input {
     padding-block: .3rem;
     border-radius: 20px;
     box-shadow: inset 0 0 6px #046363;
+}
+.radio {
+    display: flex;
+    padding-inline: 4rem;
+    cursor: pointer;
+    & input {
+        box-shadow: none;
+        accent-color: #3bdfdf;
+        scale: .8;
+    }
 }

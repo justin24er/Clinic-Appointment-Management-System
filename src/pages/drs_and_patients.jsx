@@ -252,7 +252,7 @@ function Drs_patients() {
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Doctor</div>
-                <Form className="add-form" onSubmit={handleDoctorAdd}>
+                <Form className="add-form add-doc-form" onSubmit={handleDoctorAdd}>
                     <Input 
                         type="text"
                         value={dname}
@@ -293,7 +293,7 @@ function Drs_patients() {
                     <i className="fa-solid fa-xmark"></i>
                 </Button>
                 <div className="form-title">Add Patient</div>
-                <Form className="add-form" onSubmit={handlePatientAdd}>
+                <Form className="add-form add-patient-form" onSubmit={handlePatientAdd}>
                     <Input 
                         type="text"
                         placeholder="Name"
@@ -324,7 +324,7 @@ function Drs_patients() {
                         maxLength="25"
                         onChange={e => setPaddress(e.target.value)}
                         />
-                    <label className="male-radio">
+                    <label className="radio">
                         <Input 
                             type="radio"
                             value="Male"
@@ -333,7 +333,7 @@ function Drs_patients() {
                             />
                             <span>Male</span>
                     </label>
-                    <label className="female-radio">
+                    <label className="radio">
                         <Input 
                             type="radio"
                             value="Female"
