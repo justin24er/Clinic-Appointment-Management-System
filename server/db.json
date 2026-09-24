@@ -209,9 +209,9 @@
     },
     {
       "patientId": "U_gO-j0OwsA",
-      "doctorId": "sC5osP84jss",
-      "date": "2026-09-12",
-      "time": "00:25",
+      "doctorId": "Le0HQ-1BVWU",
+      "date": "2026-09-14",
+      "time": "00:30",
       "reason": "body checkup",
       "status": "Scheduled",
       "id": "YgWiHHjvBiA"
@@ -260,6 +260,15 @@
       "reason": "Brain Reset",
       "status": "Completed",
       "id": "B0_OKW8CGS0"
+    },
+    {
+      "patientId": "p2",
+      "doctorId": "4jsQ_JV_jcw",
+      "date": "2026-09-28",
+      "time": "21:00",
+      "reason": "Body checkup",
+      "status": "Scheduled",
+      "id": "-OtyQzP3Sck"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
