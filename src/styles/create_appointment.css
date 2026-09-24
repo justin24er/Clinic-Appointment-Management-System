@@ -1,0 +1,32 @@
+.appointment-form-wrapper {
+    width: 600px;
+    max-width: 90vw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-block-start: 1rem;
+}
+.appointment-form-title {
+    font-size: 1.5rem;
+    font-weight: var(--fw-600);
+    color: var(--teal)
+}
+.appointment-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.appointment-form label {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.appointment-form textarea,
+.appointment-form .form-button {
+    grid-column: 1/-1;
+}
