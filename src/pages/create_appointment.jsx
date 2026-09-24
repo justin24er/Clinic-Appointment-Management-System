@@ -7,6 +7,7 @@ import Input from '../components/ui/input'
 import Button from '../components/ui/button'
 import Select from '../components/ui/select'
 import Form from '../components/form'
+import '../styles/create_appointment.css'
 
 function CreateAppt() {
     const [fdate, setFdate] = useState("")
@@ -18,6 +19,9 @@ function CreateAppt() {
     const {addAppointment} = useAppointments()
     const {doctors} = useDoctors()
     const {patients} = usePatients()
+    const [isDoctor, setIsDoctor] = useState(false)
+    const [isPatient, setIsPatient] = useState(false)
+
 
     const {setSUCCESS, setERROR, setMessage} = useContext(notification)
     const [formError, setFormError] = useState("")
@@ -72,6 +76,18 @@ function CreateAppt() {
         }
     }
 
+    function handleFdoctor(event) {
+        setFdoctor(event.target.value)
+        setIsDoctor(false)
+        requestAnimationFrame(() => {setIsDoctor(true)})
+    }
+
+    function handleFpatient(event) {
+        setFpatient(event.target.value)
+        setIsPatient(false)
+        requestAnimationFrame(() => {setIsPatient(true)})
+    }
+
     return (
         <div className="appointment-form-wrapper">
             <span className="appointment-form-title">Create Appointment</span>
@@ -101,9 +117,10 @@ function CreateAppt() {
                     <span>Doctor</span>
                     <Select
                         value={fdoctor}
-                        onChange={e => setFdoctor(e.target.value)}
+                        onChange={handleFdoctor}
                         className="form-select">
                         <Button className="select-btn">
+                            <selectedContent className={isDoctor && "pop"}></selectedContent>
                             <i className="fa-solid fa-chevron-down"></i>
                         </Button>
                         <option value="" selected disabled>--select-doctor--</option>
@@ -117,8 +134,9 @@ function CreateAppt() {
                     <Select 
                         value={fpatient}
                         className="form-select"
-                        onChange={e => setFpatient(e.target.value)}>
+                        onChange={handleFpatient}>
                             <Button className="select-btn">
+                                <selectedContent className={isPatient && "pop"}></selectedContent>
                                 <i className="fa-solid fa-chevron-down"></i>
                             </Button>
                             <option value="" selected disabled>--select-patient--</option>
@@ -136,8 +154,8 @@ function CreateAppt() {
                     onChange={e => setFreason(e.target.value)} 
                     />
                 <Button type="submit" className="form-button">CREATE</Button>
-                {formSuccess && <div className="status form-success">{formSuccess}</div>}
-                {formError && <div className="status form-error">{formError}</div>}
+                {formSuccess && <div className="appointment-status form-success">{formSuccess}</div>}
+                {formError && <div className="appointment-status form-error">{formError}</div>}
             </Form>
         </div>
     )

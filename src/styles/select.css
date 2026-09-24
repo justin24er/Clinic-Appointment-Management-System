@@ -16,9 +16,9 @@ select {
     }
     &::picker(select) {
         appearance: base-select;
-        color: var(--teal);
         margin-block: .5rem;
         border-radius: 12px;
+        color: var(--teal);
         border: 1px solid #ffffff7c;;
         backdrop-filter: blur(8px);
         background: #ffffff8c;
