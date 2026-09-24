@@ -206,6 +206,60 @@
       "reason": "Mental therapy",
       "status": "Cancelled",
       "id": "L1w1BurxBuU"
+    },
+    {
+      "patientId": "U_gO-j0OwsA",
+      "doctorId": "sC5osP84jss",
+      "date": "2026-09-12",
+      "time": "00:25",
+      "reason": "body checkup",
+      "status": "Scheduled",
+      "id": "YgWiHHjvBiA"
+    },
+    {
+      "patientId": "ts0tLjuuy4s",
+      "doctorId": "UN-7UQXgdOc",
+      "date": "2026-11-04",
+      "time": "00:00",
+      "reason": "Pregance checkup",
+      "status": "Confirmed",
+      "id": "wfkHb6UmV9w"
+    },
+    {
+      "patientId": "y2IH7kduNCc",
+      "doctorId": "f1Ax08Yr_U0",
+      "date": "2027-03-23",
+      "time": "11:21",
+      "reason": "Abortion",
+      "status": "Scheduled",
+      "id": "G5QZldiGHaw"
+    },
+    {
+      "patientId": "lvMA6FtRk0A",
+      "doctorId": "d1",
+      "date": "2027-07-13",
+      "time": "02:00",
+      "reason": "Eyes checkup and counsel",
+      "status": "Scheduled",
+      "id": "CfHzhHiIJ3E"
+    },
+    {
+      "patientId": "U_gO-j0OwsA",
+      "doctorId": "d3",
+      "date": "2027-05-07",
+      "time": "01:45",
+      "reason": "bones-checkup and exercise",
+      "status": "Confirmed",
+      "id": "Eaz-XaEPqxM"
+    },
+    {
+      "patientId": "U_gO-j0OwsA",
+      "doctorId": "4jsQ_JV_jcw",
+      "date": "2027-01-01",
+      "time": "00:00",
+      "reason": "Brain Reset",
+      "status": "Completed",
+      "id": "B0_OKW8CGS0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
