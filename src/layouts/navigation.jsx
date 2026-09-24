@@ -8,10 +8,8 @@ function Navigation({children})  {
 
     return (
         <div className="main-container">
-            <div className="page-notification">
-                {SUCCESS && <span className="notification-success">{message}</span> }
-                {ERROR && <span className="notification-error">{message}</span>}
-            </div>
+            {SUCCESS && <span className="notify notification-success">{message} <i className="fa-solid fa-check"></i></span> }
+            {ERROR && <span className="notify notification-error">{message} <i className="fa-solid fa-xmark"></i></span>}
             <h2 className="primary-heading">Clinic <span>Appointment</span> Management System</h2>
             <main>
                 <nav className="main-navigation">

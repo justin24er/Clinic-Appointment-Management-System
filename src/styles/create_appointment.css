@@ -61,3 +61,12 @@
     outline: none;
     cursor: text;
 }
+.appointment-status {
+    grid-column: 1/-1
+}
+.appointment-status.form-error {
+    color: red;
+}
+.appointment-status.form-success {
+    color: var(--teal);
+}
