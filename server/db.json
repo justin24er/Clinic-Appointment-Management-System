@@ -178,7 +178,7 @@
       "date": "2027-01-02",
       "time": "12:40",
       "reason": "Cancer checkup",
-      "status": "Cancelled"
+      "status": "Scheduled"
     },
     {
       "patientId": "p2",
