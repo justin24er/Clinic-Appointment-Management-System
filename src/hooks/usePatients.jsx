@@ -83,7 +83,7 @@ function usePatients() {
             return {success: true, mssg: "removed successfully!"}
         }
         catch(err) {
-            return {success: true, mssg: err.message}
+            return {success: false, mssg: err.message}
         }
     }
 
