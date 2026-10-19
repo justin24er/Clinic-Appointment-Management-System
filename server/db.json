@@ -79,6 +79,14 @@
       "gender": "Male",
       "address": "Miami-",
       "id": "ODGz1Y5MXGU"
+    },
+    {
+      "name": "justine Rugemalila",
+      "age": "45",
+      "phone": "+255673980285",
+      "gender": "Male",
+      "address": "209,6A",
+      "id": "xtj62CAl25o"
     }
   ],
   "doctors": [
@@ -165,6 +173,13 @@
       "phone": "+25577899982",
       "email": "ed.md@gmail.co.tz",
       "id": "ERoaIdCjHq4"
+    },
+    {
+      "name": "Scarlion",
+      "specialty": "Dentistry",
+      "phone": "+2540088878788",
+      "email": "sc.clinic@gmail.com",
+      "id": "WUrUClQg39M"
     }
   ],
   "appointments": [
