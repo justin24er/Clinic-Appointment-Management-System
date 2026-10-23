@@ -180,6 +180,13 @@
       "phone": "+2540088878788",
       "email": "sc.clinic@gmail.com",
       "id": "WUrUClQg39M"
+    },
+    {
+      "name": "Frank",
+      "specialty": "spineology",
+      "phone": "25578998320",
+      "email": "frank@clinic.co.tz",
+      "id": "4h2j4y7TfCg"
     }
   ],
   "appointments": [
@@ -199,7 +206,7 @@
       "date": "2026-09-16",
       "time": "14:00",
       "reason": "Follow-up on heart palpitations",
-      "status": "Completed"
+      "status": "Confirmed"
     },
     {
       "id": "a3",
@@ -317,6 +324,15 @@
       "reason": "Body Paralysis... Checkup early on 7th",
       "status": "Scheduled",
       "id": "1nE_F25EvWo"
+    },
+    {
+      "patientId": "Fss3A_dmiSM",
+      "doctorId": "WUrUClQg39M",
+      "date": "2026-10-12",
+      "time": "22:00",
+      "reason": "counselling...",
+      "status": "Scheduled",
+      "id": "n6GXXps6QLo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
