@@ -8,3 +8,5 @@
 
 ### The `create appointment` page section
 ![create_appt](./src/assets/create_appt.png)
+
+<p>&copy; all rights reserved 2026.</p>
